@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=22 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
+[ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -172,6 +173,14 @@ theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_y2iih")
 step = 1.0
 value = 100.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("9_3atht")
+
+[node name="ElapsedTime" type="Label" parent="HUD"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Elapsed time: 0.0s"
 
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
