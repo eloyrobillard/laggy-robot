@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=15 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
+[ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -26,10 +27,24 @@ fill_to = Vector2(0.5140187, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv2b"]
 size = Vector2(42, 53)
 
+[sub_resource type="Curve2D" id="Curve2D_6b8dj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 368, -32, 0, 0, 0, 0, 416, -80, 0, 0, 0, 0, 512, -80, 0, 0, 0, 0, 568, -144, 0, 0, 0, 0, 824, -144)
+}
+point_count = 6
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehwlh"]
+size = Vector2(112.289856, 111.85713)
+
+[sub_resource type="Gradient" id="Gradient_ehwlh"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pyty"]
+gradient = SubResource("Gradient_ehwlh")
+
 [node name="TestSceneEloy" type="Node2D"]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(0, 33)
+position = Vector2(304, 33)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -33)
@@ -37,28 +52,29 @@ zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQA=")
+position = Vector2(320, 0)
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
-[node name="Exit" type="Label" parent="."]
-offset_left = 450.0
-offset_top = -185.0
-offset_right = 507.0
-offset_bottom = -140.0
-theme_override_font_sizes/font_size = 32
-text = "Exit"
+[node name="Exit" type="Area2D" parent="."]
+position = Vector2(839, -74)
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(480, -74)
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
 texture = SubResource("GradientTexture2D_ylc0x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 visible = false
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_4yv2b")
+
+[node name="Exit" type="Label" parent="Exit"]
+offset_left = -27.0
+offset_top = -111.0
+offset_right = 30.0
+offset_bottom = -66.0
+theme_override_font_sizes/font_size = 32
+text = "Exit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -89,4 +105,25 @@ text = "You wi... died?"
 [node name="WinAudio" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("4_6b8dj")
 
-[connection signal="body_entered" from="Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_6b8dj")
+script = ExtResource("5_2pyty")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-0.11228096, -13.340305)
+rotation = 0.0054347296
+v_offset = 20.66
+cubic_interp = false
+
+[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+position = Vector2(0.0026362538, 0.07651925)
+shape = SubResource("RectangleShape2D_ehwlh")
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
+scale = Vector2(1.7562985, 1.7562985)
+texture = SubResource("GradientTexture2D_2pyty")
+
+[connection signal="body_entered" from="Exit" to="CanvasLayer" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]
