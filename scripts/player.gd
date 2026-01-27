@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 
 const ULTRA_INSTINCT_SLOW_DOWN = 50
@@ -7,6 +8,7 @@ const SPEED = 400.0
 const JUMP_VELOCITY = -800.0
 const GRAV_MULT = 3
 
+var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
 
 
@@ -15,8 +17,14 @@ func _input(event: InputEvent) -> void:
 		"InputEventKey":
 			# Handle ultra-instinct
 			if Input.is_action_just_pressed("ultra-instinct"):
-				entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
-				ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+				if in_ultra_instinct_mode:
+					in_ultra_instinct_mode = false
+					left_ultra_instrinct_mode.emit()
+					ultra_instinct_factor = 1
+				else:
+					in_ultra_instinct_mode = true
+					entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
+					ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
 
 			# Handle jump.
 			if Input.is_action_just_pressed("jump") and is_on_floor():

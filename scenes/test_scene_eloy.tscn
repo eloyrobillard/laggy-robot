@@ -131,6 +131,8 @@ texture = SubResource("GradientTexture2D_2pyty")
 
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="body_entered" from="Exit" to="CanvasLayer" method="_on_area_2d_body_entered"]
 [connection signal="restart_level" from="CanvasLayer" to="." method="_on_canvas_layer_restart_level"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]

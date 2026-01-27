@@ -18,3 +18,7 @@ func _process(delta):
 
 func _on_character_body_2d_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	inverse_speed = BASE_INV_SPEED * slow_down_factor
+
+
+func _on_character_body_2d_left_ultra_instrinct_mode() -> void:
+	inverse_speed = BASE_INV_SPEED
