@@ -1,0 +1,91 @@
+[gd_scene load_steps=10 format=4 uid="uid://b6r8iwvwwwjqo"]
+
+[ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
+[ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
+[ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
+[ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
+scenes/1/scene = ExtResource("2_4yv2b")
+
+[sub_resource type="TileSet" id="TileSet_0ojeu"]
+tile_layout = 4
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetScenesCollectionSource_ylc0x")
+
+[sub_resource type="Gradient" id="Gradient_4yv2b"]
+offsets = PackedFloat32Array(0.61, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ylc0x"]
+gradient = SubResource("Gradient_4yv2b")
+fill = 1
+fill_from = Vector2(0.49766356, 0)
+fill_to = Vector2(0.5140187, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv2b"]
+size = Vector2(42, 53)
+
+[node name="TestSceneEloy" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_0ojeu")]
+position = Vector2(0, 33)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -33)
+position_smoothing_enabled = true
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD7/wEAAAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQA=")
+tile_set = SubResource("TileSet_0ojeu")
+
+[node name="Exit" type="Label" parent="."]
+offset_left = 450.0
+offset_top = -185.0
+offset_right = 507.0
+offset_bottom = -140.0
+theme_override_font_sizes/font_size = 32
+text = "Exit"
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(480, -74)
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, -22)
+texture = SubResource("GradientTexture2D_ylc0x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_4yv2b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("3_ylc0x")
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="YouWin" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -44.0
+offset_right = 219.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "You wi... died?"
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("4_6b8dj")
+
+[connection signal="body_entered" from="Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]
