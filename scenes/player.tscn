@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://btcov1o8dycyk"]
+[gd_scene load_steps=6 format=3 uid="uid://btcov1o8dycyk"]
 
 [ext_resource type="Script" uid="uid://chx5t5jpsrxx3" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://d1wjxhdxhkgsu" path="res://scripts/ActionsRecorder.gd" id="2_g2els"]
 
 [sub_resource type="Gradient" id="Gradient_uwrxv"]
 offsets = PackedFloat32Array(0)
@@ -21,3 +22,6 @@ texture = SubResource("GradientTexture2D_3vyb7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3vyb7")
 debug_color = Color(0.8039216, 0.6, 0.69803923, 0.41960785)
+
+[node name="ActionsRecorder" type="Node" parent="."]
+script = ExtResource("2_g2els")
