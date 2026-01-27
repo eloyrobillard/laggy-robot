@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=20 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
+[ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -42,6 +43,13 @@ size = Vector2(112.289856, 111.85713)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2pyty"]
 gradient = SubResource("Gradient_ehwlh")
+
+[sub_resource type="Gradient" id="Gradient_egwr4"]
+offsets = PackedFloat32Array(0, 0.27333334)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2iih"]
+gradient = SubResource("Gradient_egwr4")
 
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
@@ -129,10 +137,32 @@ shape = SubResource("RectangleShape2D_ehwlh")
 scale = Vector2(1.7562985, 1.7562985)
 texture = SubResource("GradientTexture2D_2pyty")
 
+[node name="UltraInstinctLayer" type="CanvasLayer" parent="."]
+script = ExtResource("8_y2iih")
+
+[node name="UltraInstinctTint" type="TextureRect" parent="UltraInstinctLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y2iih")
+
+[node name="UltraInstinctTint2" type="TextureRect" parent="UltraInstinctLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_y2iih")
+flip_h = true
+
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
+[connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="body_entered" from="Exit" to="CanvasLayer" method="_on_area_2d_body_entered"]
 [connection signal="restart_level" from="CanvasLayer" to="." method="_on_canvas_layer_restart_level"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]
