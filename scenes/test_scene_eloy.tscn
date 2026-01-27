@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=17 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
+[ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
@@ -49,9 +50,9 @@ script = ExtResource("1_2pyty")
 position = Vector2(304, 33)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(0, -33)
 zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
+script = ExtResource("3_egwr4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(320, 0)
@@ -89,7 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="YouWin" type="Label" parent="CanvasLayer"]
+[node name="YouDied" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -101,8 +102,9 @@ offset_right = 219.0
 offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 64
-text = "You wi... died?"
+theme_override_colors/font_color = Color(0.5058824, 0.15686275, 0.16470589, 1)
+theme_override_font_sizes/font_size = 256
+text = "YOU DIED"
 
 [node name="WinAudio" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("4_6b8dj")
@@ -127,6 +129,7 @@ shape = SubResource("RectangleShape2D_ehwlh")
 scale = Vector2(1.7562985, 1.7562985)
 texture = SubResource("GradientTexture2D_2pyty")
 
+[connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="body_entered" from="Exit" to="CanvasLayer" method="_on_area_2d_body_entered"]
 [connection signal="restart_level" from="CanvasLayer" to="." method="_on_canvas_layer_restart_level"]
