@@ -10,21 +10,18 @@ const GRAV_MULT = 3
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
+var can_enter_ultra_instinct = true
 
 
 func _input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventKey":
 			# Handle ultra-instinct
-			if Input.is_action_just_pressed("ultra-instinct"):
+			if Input.is_action_just_pressed("ultra-instinct") and can_enter_ultra_instinct:
 				if in_ultra_instinct_mode:
-					in_ultra_instinct_mode = false
-					left_ultra_instrinct_mode.emit()
-					ultra_instinct_factor = 1
+					leave_ultra_instinct()
 				else:
-					in_ultra_instinct_mode = true
-					entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
-					ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+					enter_ultra_instinct()
 
 			# Handle jump.
 			if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -45,3 +42,20 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * GRAV_MULT * delta / ultra_instinct_factor ** 2
 
 	move_and_slide()
+
+
+func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
+	leave_ultra_instinct()
+	can_enter_ultra_instinct = false
+
+
+func enter_ultra_instinct() -> void:
+	in_ultra_instinct_mode = true
+	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
+	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+
+
+func leave_ultra_instinct() -> void:
+	in_ultra_instinct_mode = false
+	left_ultra_instrinct_mode.emit()
+	ultra_instinct_factor = 1

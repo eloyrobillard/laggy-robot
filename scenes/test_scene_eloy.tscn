@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=21 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -51,6 +51,9 @@ colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_y2iih"]
 gradient = SubResource("Gradient_egwr4")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2iih"]
+bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
+
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
 
@@ -87,18 +90,18 @@ offset_bottom = -66.0
 theme_override_font_sizes/font_size = 32
 text = "Exit"
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="YouDiedLayer" type="CanvasLayer" parent="."]
 visible = false
 script = ExtResource("3_ylc0x")
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
+[node name="Panel" type="Panel" parent="YouDiedLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="YouDied" type="Label" parent="CanvasLayer"]
+[node name="YouDied" type="Label" parent="YouDiedLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -114,7 +117,7 @@ theme_override_colors/font_color = Color(0.5058824, 0.15686275, 0.16470589, 1)
 theme_override_font_sizes/font_size = 256
 text = "YOU DIED"
 
-[node name="WinAudio" type="AudioStreamPlayer" parent="CanvasLayer"]
+[node name="WinAudio" type="AudioStreamPlayer" parent="YouDiedLayer"]
 stream = ExtResource("4_6b8dj")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -157,12 +160,26 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_y2iih")
 flip_h = true
 
+[node name="ProgressBar" type="ProgressBar" parent="UltraInstinctLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 528.0
+offset_top = 88.0
+offset_right = -520.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_styles/fill = SubResource("StyleBoxFlat_y2iih")
+step = 1.0
+value = 100.0
+
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_left_ultra_instrinct_mode"]
-[connection signal="body_entered" from="Exit" to="CanvasLayer" method="_on_area_2d_body_entered"]
-[connection signal="restart_level" from="CanvasLayer" to="." method="_on_canvas_layer_restart_level"]
-[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="CanvasLayer" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Exit" to="YouDiedLayer" method="_on_area_2d_body_entered"]
+[connection signal="restart_level" from="YouDiedLayer" to="." method="_on_canvas_layer_restart_level"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="YouDiedLayer" method="_on_area_2d_body_entered"]
+[connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="CharacterBody2D" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
