@@ -60,7 +60,26 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
 
-	PlaybackMove()
+	var moves = PlaybackMove()
+	for move in moves:
+		match move.action:
+			# LEFT
+			0:
+				if move.pressed:
+					velocity.x = -SPEED / ultra_instinct_factor
+				else:
+					velocity.x = 0.0
+			# RIGHT
+			1:
+				if move.pressed:
+					velocity.x = SPEED / ultra_instinct_factor
+				else:
+					velocity.x = 0.0
+			# JUMP
+			2:
+				if move.pressed:
+					velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+
 	move_and_slide()
 
 
@@ -113,8 +132,9 @@ func get_player_in_end_mode() -> void:
 func PlaybackMove():
 	playbackFrame += 1
 	# var inputs = recorder.inputList
-	var inputs: Array[InputFrame] = [InputFrame.new(0, InputActions.Action.RIGHT, true), InputFrame.new(120, InputActions.Action.RIGHT, false)]
+	var inputs: Array[InputFrame] = [InputFrame.new(1, InputActions.Action.RIGHT, true), InputFrame.new(30, InputActions.Action.JUMP, true), InputFrame.new(60, InputActions.Action.RIGHT, false)]
 
+	var result: Array[InputFrame]
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
 
