@@ -15,6 +15,7 @@ const JUMP_VELOCITY = -1500.0
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
 var can_enter_ultra_instinct = true
+
 var playingRecord := false
 var playbackFrame := 0
 var playbackIndex := 0
