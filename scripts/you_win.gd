@@ -15,10 +15,9 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_exit_body_entered(body: Node2D) -> void:
-	if body is CharacterBody2D:
-		visible = true
-		win_audio.play()
+func _on_player_won() -> void:
+	visible = true
+	win_audio.play()
 
-		await get_tree().create_timer(3.0).timeout
-		restart_level.emit()
+	await get_tree().create_timer(3.0).timeout
+	restart_level.emit()
