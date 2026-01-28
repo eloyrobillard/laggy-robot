@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
+@onready var recorder = $ActionsRecorder
+
 signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
-@onready var recorder = $ActionsRecorder
 
 const ULTRA_INSTINCT_SLOW_DOWN = 50
 const SPEED = 400.0
@@ -15,6 +16,12 @@ var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
 var can_enter_ultra_instinct = true
 
+
+var playingRecord := false
+var playbackFrame := 0
+var playbackIndex := 0
+var playback_left := false
+var playback_right := false
 
 func _input(event: InputEvent) -> void:
 	match event.get_class():
@@ -27,7 +34,10 @@ func _input(event: InputEvent) -> void:
 					enter_ultra_instinct()
 
 			# Handle jump.
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if (Input.is_action_just_pressed("jump") 
+					and is_on_floor() 
+					and not recorder.isRecording 
+					and not playingRecord):
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
 
 			# Get the input direction and handle the movement/deceleration.
@@ -37,12 +47,12 @@ func _input(event: InputEvent) -> void:
 				velocity.x = direction * SPEED / ultra_instinct_factor
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-
-var playingRecord := false
-var playbackFrame := 0
-var playbackIndex := 0
+		
 
 func _physics_process(delta: float) -> void:
+	if playingRecord:
+		PlaybackMove()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * GRAV_MULT * delta / ultra_instinct_factor ** 2
@@ -59,12 +69,18 @@ func enter_ultra_instinct() -> void:
 	in_ultra_instinct_mode = true
 	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
 	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+	
+	recorder.isRecording = true
+	playingRecord = false
 
 
 func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
 	ultra_instinct_factor = 1
+	
+	recorder.isRecording = false
+	playingRecord = true
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
@@ -96,6 +112,36 @@ func PlaybackMove():
 	var inputs = recorder.inputList
 	
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
-		var e = inputs[playbackIndex]
+		var f = inputs[playbackIndex]
+		
+		if f.action == InputActions.Action.JUMP and is_on_floor():
+			velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+		
+		else:
+			if f.action == InputActions.Action.LEFT:
+				playback_left = f.pressed
+			if f.action == InputActions.Action.RIGHT:
+				playback_right = f.pressed
 		
 		playbackIndex += 1
+		
+	var dir := 0
+	if playback_left:
+		dir -= 1
+	if playback_right:
+		dir += 1
+		
+	if dir:
+		velocity.x = dir * SPEED / ultra_instinct_factor
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
+		
+	if playbackIndex >= inputs.size():
+		EndPlayback()
+
+func EndPlayback():
+	playbackFrame = 0
+	playbackIndex = 0
+	playingRecord = false
+	recorder.inputList.clear()
+	recorder.currentFrame = 0

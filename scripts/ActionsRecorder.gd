@@ -1,6 +1,6 @@
 extends Node
 
-var isRecording := true
+var isRecording := false
 var currentFrame := 0
 var inputList : Array[InputFrame] = []
 
@@ -8,6 +8,9 @@ func _physics_process(_delta):
 	if isRecording:
 		currentFrame += 1
 		
+func displayList():
+	for input in inputList:
+		prints(input.frame, input.action, input.pressed)
 
 func _unhandled_input(event):
 	if not isRecording or event is not InputEvent: 

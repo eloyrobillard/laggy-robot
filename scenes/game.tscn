@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://b4wt86w4rbusl" path="res://scenes/debug_layer.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" path="res://scenes/debug_layer.tscn" id="3_lnu2h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lnu2h"]
 scenes/1/scene = ExtResource("2_yqjtg")
