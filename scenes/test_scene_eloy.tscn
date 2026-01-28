@@ -74,6 +74,8 @@ limit_bottom = 0
 position_smoothing_enabled = true
 script = ExtResource("3_egwr4")
 
+[node name="DebugLayer" type="CanvasLayer" parent="Player"]
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(320, -128)
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
@@ -153,6 +155,7 @@ texture = SubResource("GradientTexture2D_2pyty")
 script = ExtResource("8_y2iih")
 
 [node name="UltraInstinctTint" type="TextureRect" parent="UltraInstinctLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -161,6 +164,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_y2iih")
 
 [node name="UltraInstinctTint2" type="TextureRect" parent="UltraInstinctLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

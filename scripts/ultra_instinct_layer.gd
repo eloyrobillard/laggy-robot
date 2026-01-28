@@ -18,6 +18,8 @@ var current_ultra_instinct_percent
 func _ready() -> void:
 	ultra_instinct_tint.modulate.a = 0
 	ultra_instinct_tint_2.modulate.a = 0
+	ultra_instinct_tint.visible = true
+	ultra_instinct_tint_2.visible = true
 	current_ultra_instinct_sec = MAX_ULTRA_INSTINCT_SEC
 
 
