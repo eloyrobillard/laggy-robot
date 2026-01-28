@@ -36,12 +36,12 @@ func _process(delta: float) -> void:
 			ultra_instinct_depleted.emit()
 
 
-func _on_character_body_2d_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
+func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	in_ultra_instinct_mode = true
 	ultra_instinct_factor = slow_down_factor
 
 
-func _on_character_body_2d_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instrinct_mode() -> void:
 	in_ultra_instinct_mode = false
 
 	ultra_instinct_tint.modulate.a = 0

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
+signal died
 
 const ULTRA_INSTINCT_SLOW_DOWN = 50
 const SPEED = 400.0
@@ -59,3 +60,19 @@ func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
 	ultra_instinct_factor = 1
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	die()
+
+
+func _on_demon_body_entered(body: Node2D) -> void:
+	if body == self:
+		die()
+
+
+func die() -> void:
+	leave_ultra_instinct()
+	set_process_input(false)
+	velocity.x = 0
+	died.emit()

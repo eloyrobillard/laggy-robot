@@ -39,13 +39,18 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehwlh"]
-size = Vector2(112.289856, 111.85713)
+[sub_resource type="CircleShape2D" id="CircleShape2D_2bbt6"]
+radius = 47.71353
 
 [sub_resource type="Gradient" id="Gradient_ehwlh"]
+interpolation_color_space = 1
+offsets = PackedFloat32Array(0.6, 0.72)
+colors = PackedColorArray(0.40253556, 0.08601982, 0.086659305, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2pyty"]
 gradient = SubResource("Gradient_ehwlh")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_egwr4"]
 offsets = PackedFloat32Array(0, 0.27333334)
@@ -60,21 +65,22 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(304, 33)
+[node name="Player" parent="." instance=ExtResource("1_0ojeu")]
+position = Vector2(304, -96)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
+limit_bottom = 0
 position_smoothing_enabled = true
 script = ExtResource("3_egwr4")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(320, 0)
+position = Vector2(320, -128)
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(839, -74)
+position = Vector2(839, -202)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
@@ -128,18 +134,18 @@ curve = SubResource("Curve2D_6b8dj")
 script = ExtResource("5_2pyty")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-0.11228096, -13.340305)
+position = Vector2(0.5780621, -140.36343)
 rotation = 0.0054347296
-v_offset = 20.66
+v_offset = -106.365
 cubic_interp = false
 
-[node name="Area2D" type="Area2D" parent="Path2D/PathFollow2D"]
+[node name="Demon" type="Area2D" parent="Path2D/PathFollow2D"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Demon"]
 position = Vector2(0.0026362538, 0.07651925)
-shape = SubResource("RectangleShape2D_ehwlh")
+shape = SubResource("CircleShape2D_2bbt6")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Demon"]
 scale = Vector2(1.7562985, 1.7562985)
 texture = SubResource("GradientTexture2D_2pyty")
 
@@ -213,13 +219,14 @@ text = "VICTORY"
 [node name="WinAudio" type="AudioStreamPlayer" parent="VictoryLayer"]
 stream = ExtResource("10_beqnb")
 
-[connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
-[connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
-[connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_entered_ultra_instinct_mode"]
-[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
-[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
-[connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_left_ultra_instrinct_mode"]
+[connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
+[connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
+[connection signal="entered_ultra_instinct_mode" from="Player" to="Path2D" method="_on_player_entered_ultra_instinct_mode"]
+[connection signal="entered_ultra_instinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_entered_ultra_instinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="Player" to="Player/Camera2D" method="_on_player_left_ultra_instrinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="Player" to="Path2D" method="_on_player_left_ultra_instrinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="body_entered" from="Exit" to="VictoryLayer" method="_on_exit_body_entered"]
 [connection signal="restart_level" from="YouDiedLayer" to="." method="_on_canvas_layer_restart_level"]
-[connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="YouDiedLayer" method="_on_area_2d_body_entered"]
-[connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="CharacterBody2D" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]
+[connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]

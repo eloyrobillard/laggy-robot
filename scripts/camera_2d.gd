@@ -19,15 +19,15 @@ func _process(delta: float) -> void:
 		reset_zoom()
 
 
-func _on_character_body_2d_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
+func reset_zoom() -> void:
+	zoom = Vector2(BASE_ZOOM, BASE_ZOOM)
+
+
+func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	in_ultra_instinct_mode = true
 	ultra_instinct_slow_down = slow_down_factor
 
 
-func _on_character_body_2d_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instrinct_mode() -> void:
 	in_ultra_instinct_mode = false
 	ultra_instinct_slow_down = 1
-
-
-func reset_zoom() -> void:
-	zoom = Vector2(BASE_ZOOM, BASE_ZOOM)
