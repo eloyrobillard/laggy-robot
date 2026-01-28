@@ -4,6 +4,7 @@ signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
+@onready var recorder = $ActionsRecorder
 
 const ULTRA_INSTINCT_SLOW_DOWN = 50
 const SPEED = 400.0
@@ -37,6 +38,9 @@ func _input(event: InputEvent) -> void:
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
 
+var playingRecord := false
+var playbackFrame := 0
+var playbackIndex := 0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -84,3 +88,14 @@ func get_player_in_end_mode() -> void:
 	leave_ultra_instinct()
 	set_process_input(false)
 	velocity.x = 0
+  
+	move_and_slide()
+
+func PlaybackMove():
+	playbackFrame += 1
+	var inputs = recorder.inputList
+	
+	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
+		var e = inputs[playbackIndex]
+		
+		playbackIndex += 1
