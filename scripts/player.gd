@@ -1,30 +1,110 @@
 extends CharacterBody2D
+
 @onready var recorder = $ActionsRecorder
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+signal left_ultra_instrinct_mode
+signal entered_ultra_instinct_mode(slow_down_factor: float)
+signal died
+signal won
+
+const ULTRA_INSTINCT_SLOW_DOWN = 50
+const SPEED = 400.0
+const JUMP_VELOCITY = -800.0
+const GRAV_MULT = 3
+
+var in_ultra_instinct_mode = false
+var ultra_instinct_factor = 1
+var can_enter_ultra_instinct = true
+
 
 var playingRecord := false
 var playbackFrame := 0
 var playbackIndex := 0
+var playback_left := false
+var playback_right := false
+
+func _input(event: InputEvent) -> void:
+	match event.get_class():
+		"InputEventKey":
+			# Handle ultra-instinct
+			if Input.is_action_just_pressed("ultra-instinct") and can_enter_ultra_instinct:
+				if in_ultra_instinct_mode:
+					leave_ultra_instinct()
+				else:
+					enter_ultra_instinct()
+
+			# Handle jump.
+			if (Input.is_action_just_pressed("jump") 
+					and is_on_floor() 
+					and not recorder.isRecording 
+					and not playingRecord):
+				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+
+			# Get the input direction and handle the movement/deceleration.
+			# As good practice, you should replace UI actions with custom gameplay actions.
+			var direction := Input.get_axis("left", "right")
+			if direction:
+				velocity.x = direction * SPEED / ultra_instinct_factor
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
+		
 
 func _physics_process(delta: float) -> void:
+	if playingRecord:
+		PlaybackMove()
+		
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += get_gravity() * GRAV_MULT * delta / ultra_instinct_factor ** 2
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	move_and_slide()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 
+func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
+	leave_ultra_instinct()
+	can_enter_ultra_instinct = false
+
+
+func enter_ultra_instinct() -> void:
+	in_ultra_instinct_mode = true
+	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
+	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+	
+	recorder.isRecording = true
+	playingRecord = false
+
+
+func leave_ultra_instinct() -> void:
+	in_ultra_instinct_mode = false
+	left_ultra_instrinct_mode.emit()
+	ultra_instinct_factor = 1
+	
+	recorder.isRecording = false
+	playingRecord = true
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	get_player_in_end_mode()
+	died.emit()
+
+
+func _on_demon_body_entered(body: Node2D) -> void:
+	if body == self:
+		get_player_in_end_mode()
+		died.emit()
+
+
+func _on_exit_body_entered(body: Node2D) -> void:
+	if body == self:
+		get_player_in_end_mode()
+		won.emit()
+
+
+func get_player_in_end_mode() -> void:
+	leave_ultra_instinct()
+	set_process_input(false)
+	velocity.x = 0
+  
 	move_and_slide()
 
 func PlaybackMove():
@@ -32,6 +112,36 @@ func PlaybackMove():
 	var inputs = recorder.inputList
 	
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
-		var e = inputs[playbackIndex]
+		var f = inputs[playbackIndex]
+		
+		if f.action == InputActions.Action.JUMP and is_on_floor():
+			velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+		
+		else:
+			if f.action == InputActions.Action.LEFT:
+				playback_left = f.pressed
+			if f.action == InputActions.Action.RIGHT:
+				playback_right = f.pressed
 		
 		playbackIndex += 1
+		
+	var dir := 0
+	if playback_left:
+		dir -= 1
+	if playback_right:
+		dir += 1
+		
+	if dir:
+		velocity.x = dir * SPEED / ultra_instinct_factor
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
+		
+	if playbackIndex >= inputs.size():
+		EndPlayback()
+
+func EndPlayback():
+	playbackFrame = 0
+	playbackIndex = 0
+	playingRecord = false
+	recorder.inputList.clear()
+	recorder.currentFrame = 0

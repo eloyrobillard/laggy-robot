@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://doe8bpv8fpr45"]
+[gd_scene load_steps=6 format=4 uid="uid://doe8bpv8fpr45"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" path="res://scenes/debug_layer.tscn" id="3_lnu2h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_lnu2h"]
 scenes/1/scene = ExtResource("2_yqjtg")
@@ -20,3 +21,6 @@ position = Vector2(0, 33)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAEAAAAAAAAAAQADAAEAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_uwrxv")
+
+[node name="DebugLayer" parent="." node_paths=PackedStringArray("node") instance=ExtResource("3_lnu2h")]
+node = NodePath("../CharacterBody2D")
