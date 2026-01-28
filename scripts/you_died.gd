@@ -2,7 +2,7 @@ extends CanvasLayer
 
 signal restart_level
 
-@onready var win_audio: AudioStreamPlayer = $WinAudio
+@onready var you_died_audio: AudioStreamPlayer = $YouDiedAudio
 
 
 # Called when the node enters the scene tree for the first time.
@@ -15,10 +15,10 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_exit_body_entered(body: Node2D) -> void:
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		visible = true
-		win_audio.play()
+		you_died_audio.play()
 
 		await get_tree().create_timer(3.0).timeout
 		restart_level.emit()

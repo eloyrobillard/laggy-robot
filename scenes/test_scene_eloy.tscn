@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=24 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
+[ext_resource type="Script" uid="uid://yqm4laaasrgm" path="res://scripts/you_died.gd" id="5_2bbt6"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
+[ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -93,7 +95,7 @@ text = "Exit"
 
 [node name="YouDiedLayer" type="CanvasLayer" parent="."]
 visible = false
-script = ExtResource("3_ylc0x")
+script = ExtResource("5_2bbt6")
 
 [node name="Panel" type="Panel" parent="YouDiedLayer"]
 anchors_preset = 15
@@ -118,7 +120,7 @@ theme_override_colors/font_color = Color(0.5058824, 0.15686275, 0.16470589, 1)
 theme_override_font_sizes/font_size = 256
 text = "YOU DIED"
 
-[node name="WinAudio" type="AudioStreamPlayer" parent="YouDiedLayer"]
+[node name="YouDiedAudio" type="AudioStreamPlayer" parent="YouDiedLayer"]
 stream = ExtResource("4_6b8dj")
 
 [node name="Path2D" type="Path2D" parent="."]
@@ -182,13 +184,42 @@ offset_right = 40.0
 offset_bottom = 23.0
 text = "Elapsed time: 0.0s"
 
+[node name="VictoryLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("3_ylc0x")
+
+[node name="Panel" type="Panel" parent="VictoryLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Victory" type="Label" parent="VictoryLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -44.0
+offset_right = 219.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 256
+text = "VICTORY"
+
+[node name="WinAudio" type="AudioStreamPlayer" parent="VictoryLayer"]
+stream = ExtResource("10_beqnb")
+
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_entered_ultra_instinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="CharacterBody2D/Camera2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="Path2D" method="_on_character_body_2d_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="CharacterBody2D" to="UltraInstinctLayer" method="_on_character_body_2d_left_ultra_instrinct_mode"]
-[connection signal="body_entered" from="Exit" to="YouDiedLayer" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Exit" to="VictoryLayer" method="_on_exit_body_entered"]
 [connection signal="restart_level" from="YouDiedLayer" to="." method="_on_canvas_layer_restart_level"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Area2D" to="YouDiedLayer" method="_on_area_2d_body_entered"]
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="CharacterBody2D" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
