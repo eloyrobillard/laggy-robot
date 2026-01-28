@@ -66,7 +66,7 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(304, -96)
+position = Vector2(304, -224)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(1.5, 1.5)
@@ -77,12 +77,12 @@ script = ExtResource("3_egwr4")
 [node name="DebugLayer" type="CanvasLayer" parent="Player"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(320, -128)
+position = Vector2(320, -256)
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(839, -202)
+position = Vector2(842, -330)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
@@ -136,9 +136,9 @@ curve = SubResource("Curve2D_6b8dj")
 script = ExtResource("5_2pyty")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(0.5780621, -140.36343)
+position = Vector2(1.237509, -261.70163)
 rotation = 0.0054347296
-v_offset = -106.365
+v_offset = -227.705
 cubic_interp = false
 
 [node name="Demon" type="Area2D" parent="Path2D/PathFollow2D"]
