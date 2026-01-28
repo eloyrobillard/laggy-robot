@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4wt86w4rbusl"]
+
+[ext_resource type="Script" uid="uid://csn8plthofocc" path="res://scripts/debug_layer.gd" id="1_tsu2q"]
+
+[node name="DebugLayer" type="CanvasLayer"]
+script = ExtResource("1_tsu2q")
+
+[node name="GlobalPosition" type="Label" parent="."]
+offset_top = 23.0
+offset_right = 197.0
+offset_bottom = 46.0
+text = "x, y = 0, 0 (top: 0, 0)"
+
+[node name="Velocity" type="Label" parent="."]
+offset_top = 46.0
+offset_right = 88.0
+offset_bottom = 69.0
+text = "vx, vy = 0, 0"
