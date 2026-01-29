@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://eqj1viun6ta6"]
+
+[ext_resource type="Script" uid="uid://c4b5i6x37vtd1" path="res://scripts/moving_platform.gd" id="1_ms375"]
+
+[sub_resource type="Gradient" id="Gradient_l87cp"]
+offsets = PackedFloat32Array(0.98, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.64705884, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jlqkm"]
+gradient = SubResource("Gradient_l87cp")
+width = 256
+height = 256
+fill = 2
+fill_from = Vector2(0.49766356, 0.49532712)
+fill_to = Vector2(0.47897196, 0.011682243)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l87cp"]
+size = Vector2(256, 256)
+
+[node name="MovingPlatform" type="AnimatableBody2D"]
+script = ExtResource("1_ms375")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_jlqkm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l87cp")

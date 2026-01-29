@@ -1,17 +1,18 @@
-[gd_scene load_steps=25 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=26 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
-[ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
+[ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
-[ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
-[ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_egwr4"]
+[ext_resource type="Script" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
-[ext_resource type="Script" uid="uid://yqm4laaasrgm" path="res://scripts/you_died.gd" id="5_2bbt6"]
-[ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
-[ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
-[ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
+[ext_resource type="Script" path="res://scripts/you_died.gd" id="5_2bbt6"]
+[ext_resource type="Script" path="res://scripts/path_2d.gd" id="5_2pyty"]
+[ext_resource type="Script" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="9_3atht"]
 [ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
-[ext_resource type="PackedScene" uid="uid://b4wt86w4rbusl" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
+[ext_resource type="PackedScene" uid="uid://bgh4hajds7rtr" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
+[ext_resource type="PackedScene" uid="uid://eqj1viun6ta6" path="res://scenes/moving_platform.tscn" id="13_5brqo"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -82,11 +83,11 @@ BASE_ZOOM = 0.5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1808, -760)
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(3733, -1250)
+position = Vector2(5520, -1250)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
@@ -228,6 +229,13 @@ stream = ExtResource("10_beqnb")
 
 [node name="DebugLayer" parent="." node_paths=PackedStringArray("node") instance=ExtResource("12_40tyl")]
 node = NodePath("../Player")
+
+[node name="MovingPlatform" parent="." instance=ExtResource("13_5brqo")]
+position = Vector2(4368, -888)
+scale = Vector2(2, 1)
+x_right_limit = 510.0
+speed_x = 100.0
+start_direction_x = 1
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
