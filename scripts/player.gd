@@ -126,6 +126,8 @@ func _on_exit_body_entered(body: Node2D) -> void:
 func get_player_in_end_mode() -> void:
 	leave_ultra_instinct()
 	set_process_input(false)
+	set_physics_process(false)
+	animated_sprite_2d.pause()
 	velocity.x = 0
 
 
