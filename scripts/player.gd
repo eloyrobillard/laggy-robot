@@ -107,14 +107,12 @@ func leave_ultra_instinct() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	get_player_in_end_mode()
-	died.emit()
+	die()
 
 
 func _on_demon_body_entered(body: Node2D) -> void:
 	if body == self:
-		get_player_in_end_mode()
-		died.emit()
+		die()
 
 
 func _on_exit_body_entered(body: Node2D) -> void:
@@ -129,6 +127,11 @@ func get_player_in_end_mode() -> void:
 	set_physics_process(false)
 	animated_sprite_2d.pause()
 	velocity.x = 0
+
+
+func die() -> void:
+	get_player_in_end_mode()
+	died.emit()
 
 
 func PlaybackMove():
@@ -172,3 +175,7 @@ func EndPlayback():
 	playingRecord = false
 	recorder.inputList.clear()
 	recorder.currentFrame = 0
+
+
+func _on_press_hit_player() -> void:
+	die()
