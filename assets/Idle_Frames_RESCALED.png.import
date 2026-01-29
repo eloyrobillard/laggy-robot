@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbuwcgi8528nw"
-path="res://.godot/imported/running_frames.webp-230a35f115a6e45a7a3707b5c279004b.ctex"
+uid="uid://bbwogey3riwm1"
+path="res://.godot/imported/Idle_Frames_RESCALED.png-4461ac3e9150456c673463919c09e95a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/running_frames.webp"
-dest_files=["res://.godot/imported/running_frames.webp-230a35f115a6e45a7a3707b5c279004b.ctex"]
+source_file="res://assets/Idle_Frames_RESCALED.png"
+dest_files=["res://.godot/imported/Idle_Frames_RESCALED.png-4461ac3e9150456c673463919c09e95a.ctex"]
 
 [params]
 
