@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://dk0jet826jy08"]
+
+[ext_resource type="Script" uid="uid://deft355erdrvq" path="res://scripts/rotary_saw.gd" id="1_fcfnm"]
+
+[sub_resource type="Gradient" id="Gradient_sxmp2"]
+offsets = PackedFloat32Array(0.89666665, 1)
+colors = PackedColorArray(0.74509805, 0.74509805, 0.74509805, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sxmp2"]
+gradient = SubResource("Gradient_sxmp2")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5046729, 0.5)
+fill_to = Vector2(0.49766356, 1)
+
+[sub_resource type="Gradient" id="Gradient_fcfnm"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fcfnm"]
+gradient = SubResource("Gradient_fcfnm")
+width = 8
+height = 120
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxmp2"]
+radius = 68.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fx54g"]
+radius = 64.0
+
+[node name="RotarySaw" type="AnimatableBody2D"]
+collision_layer = 8
+constant_angular_velocity = 0.10471976
+script = ExtResource("1_fcfnm")
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_sxmp2")
+
+[node name="Ray" type="Sprite2D" parent="Body"]
+texture = SubResource("GradientTexture2D_fcfnm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_sxmp2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fx54g")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

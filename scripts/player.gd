@@ -179,3 +179,7 @@ func EndPlayback():
 
 func _on_press_hit_player() -> void:
 	die()
+
+
+func _on_rotary_saw_split_player_in_half() -> void:
+	die()
