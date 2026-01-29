@@ -232,14 +232,23 @@ stream = ExtResource("10_beqnb")
 node = NodePath("../Player")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("13_5brqo")]
-position = Vector2(4368, -888)
+position = Vector2(4624, -888)
 scale = Vector2(2, 1)
-x_right_limit = 510.0
-speed_x = 2000.0
+y_top_limit = -256.0
+y_bottom_limit = 256.0
+x_right_limit = 256.0
+x_left_limit = -256.0
+speed_x = 500.0
+speed_y = 500.0
+pause_at_end_sec = 1.0
 start_direction_x = 1
+start_direction_y = -1
 
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
 position = Vector2(5523, -1517)
+time_to_bottom = 0.5
+pause_bottom = 0.2
+transition_down = 2
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]

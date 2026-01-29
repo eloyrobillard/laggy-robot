@@ -15,7 +15,7 @@ extends AnimatableBody2D
 @export var speed_y: float = 1
 
 ## How long to pause when either limit is reached, before switching direction
-@export var pause_at_end_for_secs: int
+@export var pause_at_end_sec: float
 
 enum DirectionX {
 	LEFT = -1,
@@ -51,36 +51,72 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	process_x_movement(delta)
-	process_y_movement(delta)
+	var delta_x = process_x_movement(delta)
+	var delta_y = process_y_movement(delta)
+	global_position += Vector2(delta_x, delta_y)
 
 
-func process_x_movement(delta: float) -> void:
+var x_timer = 0
+
+
+func process_x_movement(delta: float) -> float:
 	if direction_x == DirectionX.NONE:
-		return
+		return 0
 
-	if global_position.x <= local_x_left_limit:
-		direction_x = DirectionX.RIGHT
-	elif global_position.x >= local_x_right_limit:
-		direction_x = DirectionX.LEFT
-	move_local_x(direction_x * speed_x * delta)
+	if global_position.x < local_x_left_limit:
+		x_timer += delta
+		if x_timer > pause_at_end_sec:
+			global_position.x = local_x_left_limit
+			direction_x = DirectionX.RIGHT
+			x_timer = 0
+		else:
+			return 0
+
+	elif global_position.x > local_x_right_limit:
+		x_timer += delta
+		if x_timer > pause_at_end_sec:
+			global_position.x = local_x_right_limit
+			direction_x = DirectionX.LEFT
+			x_timer = 0
+		else:
+			return 0
+
+	return direction_x * speed_x * delta
 
 
-func process_y_movement(delta: float) -> void:
+var y_timer = 0
+
+
+func process_y_movement(delta: float) -> float:
 	if direction_y == DirectionY.NONE:
-		return
+		return 0
 
-	if global_position.y <= local_y_top_limit:
-		direction_y = DirectionY.DOWN
-	elif global_position.y >= local_y_bottom_limit:
-		direction_y = DirectionY.UP
-	move_local_y(direction_y * speed_y * delta)
+	if global_position.y < local_y_top_limit:
+		y_timer += delta
+		if y_timer > pause_at_end_sec:
+			global_position.y = local_y_top_limit
+			direction_y = DirectionY.DOWN
+			y_timer = 0
+		else:
+			return 0
+
+	elif global_position.y > local_y_bottom_limit:
+		y_timer += delta
+		if y_timer > pause_at_end_sec:
+			global_position.y = local_y_bottom_limit
+			direction_y = DirectionY.UP
+			y_timer = 0
+		else:
+			return 0
+
+	return direction_y * speed_y * delta
 
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings = []
 	if y_top_limit > y_bottom_limit:
 		warnings.push_back("Bottom limit must be greater than top limit (Y grows in the downward direction; they can be equal to signify lack of movement on the Y axis)")
+
 	if x_left_limit > x_right_limit:
 		warnings.push_back("Left limit must be smaller than right limit (X grows in the right direction; they can be equal to signify lack of movement on the X axis)")
 
