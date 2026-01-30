@@ -46,6 +46,11 @@ func _input(event: InputEvent) -> void:
 			var direction := Input.get_axis("left", "right")
 			if direction:
 				velocity.x = direction * SPEED / ultra_instinct_factor
+
+				if direction < 0:
+					animated_sprite_2d.flip_h = true
+				else:
+					animated_sprite_2d.flip_h = false
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
 
@@ -68,11 +73,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		if velocity.y > 0:
 			animated_sprite_2d.play("jump-down")
-
-	if velocity.x < 0:
-		animated_sprite_2d.flip_h = true
-	else:
-		animated_sprite_2d.flip_h = false
 
 	move_and_slide()
 
