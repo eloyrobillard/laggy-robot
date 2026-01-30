@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="9_3atht"]
 [ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
-[ext_resource type="PackedScene" uid="uid://bgh4hajds7rtr" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
+[ext_resource type="PackedScene" uid="uid://b4wt86w4rbusl" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
 [ext_resource type="PackedScene" uid="uid://eqj1viun6ta6" path="res://scenes/moving_platform.tscn" id="13_5brqo"]
 [ext_resource type="PackedScene" uid="uid://dlyemutxqt3sn" path="res://scenes/press.tscn" id="14_iv2r6"]
 [ext_resource type="PackedScene" uid="uid://dk0jet826jy08" path="res://scenes/rotary_saw.tscn" id="15_hcrix"]
@@ -85,7 +85,7 @@ BASE_ZOOM = 0.5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(1808, -760)
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQAQAP//AAAAAAAAAQARAP//AAAAAAAAAQASAP//AAAAAAAAAQATAP//AAAAAAAAAQAUAP//AAAAAAAAAQAVAP//AAAAAAAAAQAWAP//AAAAAAAAAQAXAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
@@ -246,14 +246,14 @@ start_direction_x = 1
 start_direction_y = 1
 
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
-position = Vector2(5520, -1517)
+position = Vector2(6908, -1517)
 time_to_bottom = 0.5
 pause_bottom = 0.2
 transition_down = 2
 
 [node name="RotarySaw" parent="." instance=ExtResource("15_hcrix")]
 z_index = -1
-position = Vector2(5139, -1144)
+position = Vector2(5139, -953)
 scale = Vector2(2, 2)
 constant_angular_velocity = 0.0
 rot_speed_deg_sec = -1080.0

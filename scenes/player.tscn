@@ -118,6 +118,11 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8ls1")
@@ -164,9 +169,8 @@ rect = Rect2(-71, -118, 154, 232)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
-frame_progress = 0.9266275
 
 [node name="ActionsRecorder" type="Node" parent="."]
 script = ExtResource("2_g2els")
