@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 42.5
-height = 212.0
+height = 227.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_dqkch")
@@ -208,7 +208,7 @@ rect = Rect2(-71, -118, 154, 232)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"land"
+animation = &"run"
 autoplay = "idle"
 
 [node name="ActionsRecorder" type="Node" parent="."]
