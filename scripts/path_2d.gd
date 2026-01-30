@@ -26,3 +26,7 @@ func _on_player_left_ultra_instrinct_mode() -> void:
 
 func _on_player_won() -> void:
 	set_process(false)
+
+
+func _on_player_died() -> void:
+	set_process(false)
