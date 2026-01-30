@@ -41,12 +41,12 @@ radius = 64.0
 radius = 64.0
 
 [sub_resource type="Gradient" id="Gradient_4dsgs"]
-offsets = PackedFloat32Array(0.8833333, 1)
+offsets = PackedFloat32Array(0.76666665, 1)
 colors = PackedColorArray(0.32941177, 0.0627451, 0.0627451, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_03uyg"]
 gradient = SubResource("Gradient_4dsgs")
-height = 8
+height = 14
 fill = 2
 fill_from = Vector2(0.50233644, 0.64719623)
 fill_to = Vector2(0.48831776, 0)
@@ -120,7 +120,7 @@ shape = SubResource("CircleShape2D_65uwv")
 constant_linear_velocity = Vector2(-600, 0)
 
 [node name="TopMat" type="Sprite2D" parent="TopMat"]
-position = Vector2(159, -61)
+position = Vector2(159.99998, -58)
 scale = Vector2(4.984375, 1)
 texture = SubResource("GradientTexture2D_03uyg")
 
@@ -133,7 +133,7 @@ one_way_collision = true
 constant_linear_velocity = Vector2(600, 0)
 
 [node name="BottomMat" type="Sprite2D" parent="BottomMat"]
-position = Vector2(159.50002, 61)
+position = Vector2(159.50002, 58)
 scale = Vector2(4.984375, 1)
 texture = SubResource("GradientTexture2D_03uyg")
 flip_v = true
