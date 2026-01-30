@@ -9,45 +9,45 @@
 radius = 20.0
 height = 212.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(0, 0, 360, 487)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlg0r"]
+atlas = ExtResource("2_dqkch")
+region = Rect2(372, 0, 360, 487)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuyoq"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(0, 0, 371, 487)
+region = Rect2(744, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(371, 0, 371, 487)
+region = Rect2(1116, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(742, 0, 371, 487)
+region = Rect2(1488, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(1113, 0, 371, 487)
+region = Rect2(1860, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(1484, 0, 371, 487)
+region = Rect2(2232, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(1855, 0, 371, 487)
+region = Rect2(2604, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(2226, 0, 371, 487)
+region = Rect2(2976, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("2_dqkch")
-region = Rect2(2597, 0, 371, 487)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
-atlas = ExtResource("2_dqkch")
-region = Rect2(2968, 0, 371, 487)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
-atlas = ExtResource("2_dqkch")
-region = Rect2(3339, 0, 371, 487)
+region = Rect2(3348, 0, 360, 487)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = ExtResource("3_qlg0r")
@@ -85,6 +85,12 @@ region = Rect2(2597, 0, 371, 487)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_dqkch")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlg0r")
+}, {
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tuyoq")
 }, {
 "duration": 1.0,
@@ -107,12 +113,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_jej6c")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f1ej7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oprun")
 }],
 "loop": true,
 "name": &"idle",
@@ -169,8 +169,9 @@ rect = Rect2(-71, -118, 154, 232)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.022666302
 
 [node name="ActionsRecorder" type="Node" parent="."]
 script = ExtResource("2_g2els")
