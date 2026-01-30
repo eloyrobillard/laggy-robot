@@ -214,7 +214,4 @@ autoplay = "idle"
 [node name="ActionsRecorder" type="Node" parent="."]
 script = ExtResource("2_g2els")
 
-[node name="ActionsRecorder" type="Node" parent="."]
-script = ExtResource("2_g2els")
-
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

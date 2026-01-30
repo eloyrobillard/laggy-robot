@@ -58,27 +58,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
 
-	var moves = PlaybackMove()
-	for move in moves:
-		match move.action:
-			# LEFT
-			0:
-				if move.pressed:
-					velocity.x = -SPEED / ultra_instinct_factor
-				else:
-					velocity.x = 0.0
-
-			# RIGHT
-			1:
-				if move.pressed:
-					velocity.x = SPEED / ultra_instinct_factor
-				else:
-					velocity.x = 0.0
-			# JUMP
-			2:
-				if move.pressed:
-					velocity.y = JUMP_VELOCITY / ultra_instinct_factor
-
 	# animations
 	if velocity.y == 0:
 		if velocity.x == 0:
