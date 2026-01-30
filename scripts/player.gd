@@ -41,19 +41,6 @@ func _input(event: InputEvent) -> void:
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
 				animated_sprite_2d.play("jump-up")
 
-			# Get the input direction and handle the movement/deceleration.
-			# As good practice, you should replace UI actions with custom gameplay actions.
-			var direction := Input.get_axis("left", "right")
-			if direction:
-				velocity.x = direction * SPEED / ultra_instinct_factor
-
-				if direction < 0:
-					animated_sprite_2d.flip_h = true
-				else:
-					animated_sprite_2d.flip_h = false
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-
 
 func _physics_process(delta: float) -> void:
 	if playingRecord:
@@ -62,6 +49,19 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis("left", "right")
+	if direction:
+		velocity.x = direction * SPEED / ultra_instinct_factor
+
+		if direction < 0:
+			animated_sprite_2d.flip_h = true
+		else:
+			animated_sprite_2d.flip_h = false
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
 
 	# animations
 	if velocity.y == 0:
