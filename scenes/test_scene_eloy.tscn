@@ -18,7 +18,7 @@ scenes/1/scene = ExtResource("2_4yv2b")
 
 [sub_resource type="TileSet" id="TileSet_0ojeu"]
 tile_layout = 4
-tile_size = Vector2i(64, 64)
+tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetScenesCollectionSource_ylc0x")
 
 [sub_resource type="Gradient" id="Gradient_4yv2b"]
@@ -27,21 +27,23 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ylc0x"]
 gradient = SubResource("Gradient_4yv2b")
+width = 512
+height = 512
 fill = 1
 fill_from = Vector2(0.49766356, 0)
 fill_to = Vector2(0.5140187, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv2b"]
-size = Vector2(42, 53)
+size = Vector2(511, 275.5)
 
 [sub_resource type="Curve2D" id="Curve2D_6b8dj"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 368, -32, 0, 0, 0, 0, 416, -80, 0, 0, 0, 0, 512, -80, 0, 0, 0, 0, 568, -144, 0, 0, 0, 0, 824, -144)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 2096, -44, 0, 0, 0, 0, 2454, -294, 0, 0, 0, 0, 2728, -306, 0, 0, 0, 0, 3026, -592, 0, 0, 0, 0, 3973, -598)
 }
 point_count = 6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2bbt6"]
-radius = 47.71353
+radius = 190.38297
 
 [sub_resource type="Gradient" id="Gradient_ehwlh"]
 interpolation_color_space = 1
@@ -50,6 +52,8 @@ colors = PackedColorArray(0.40253556, 0.08601982, 0.086659305, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2pyty"]
 gradient = SubResource("Gradient_ehwlh")
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -67,37 +71,37 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(304, -224)
+position = Vector2(1353, -618)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.5, 1.5)
+zoom = Vector2(0.5, 0.5)
 limit_bottom = 0
 position_smoothing_enabled = true
 script = ExtResource("3_egwr4")
+BASE_ZOOM = 0.5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(320, -256)
+position = Vector2(1808, -760)
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(842, -330)
+position = Vector2(3733, -1250)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
 texture = SubResource("GradientTexture2D_ylc0x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
-visible = false
-position = Vector2(0, -16)
+position = Vector2(0.5, 95.25)
 shape = SubResource("RectangleShape2D_4yv2b")
 
 [node name="Exit" type="Label" parent="Exit"]
-offset_left = -27.0
-offset_top = -111.0
-offset_right = 30.0
-offset_bottom = -66.0
-theme_override_font_sizes/font_size = 32
+offset_left = -128.0
+offset_top = -278.0
+offset_right = 100.0
+offset_bottom = -103.0
+theme_override_font_sizes/font_size = 128
 text = "Exit"
 
 [node name="YouDiedLayer" type="CanvasLayer" parent="."]
@@ -135,9 +139,9 @@ curve = SubResource("Curve2D_6b8dj")
 script = ExtResource("5_2pyty")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(1.237509, -261.70163)
-rotation = 0.0054347296
-v_offset = -227.705
+position = Vector2(-4.0552974, -883.9903)
+rotation = -0.0047709565
+v_offset = -850.0
 cubic_interp = false
 
 [node name="Demon" type="Area2D" parent="Path2D/PathFollow2D"]

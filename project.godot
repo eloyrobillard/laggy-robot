@@ -56,3 +56,7 @@ ultra-instinct={
 2d_physics/layer_2="walls"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="traps"
+
+[physics]
+
+2d/default_gravity=3000.0

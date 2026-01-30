@@ -1,27 +1,26 @@
 extends CharacterBody2D
 
-@onready var recorder = $ActionsRecorder
-
 signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var recorder: Node = $ActionsRecorder
+
 const ULTRA_INSTINCT_SLOW_DOWN = 50
-const SPEED = 400.0
-const JUMP_VELOCITY = -800.0
-const GRAV_MULT = 3
+const SPEED = 1000.0
+const JUMP_VELOCITY = -1500.0
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
 var can_enter_ultra_instinct = true
-
-
 var playingRecord := false
 var playbackFrame := 0
 var playbackIndex := 0
 var playback_left := false
 var playback_right := false
+
 
 func _input(event: InputEvent) -> void:
 	match event.get_class():
@@ -34,10 +33,10 @@ func _input(event: InputEvent) -> void:
 					enter_ultra_instinct()
 
 			# Handle jump.
-			if (Input.is_action_just_pressed("jump") 
-					and is_on_floor() 
-					and not recorder.isRecording 
-					and not playingRecord):
+			if (Input.is_action_just_pressed("jump")
+				and is_on_floor()
+				and not recorder.isRecording
+				and not playingRecord ):
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
 
 			# Get the input direction and handle the movement/deceleration.
@@ -45,18 +44,23 @@ func _input(event: InputEvent) -> void:
 			var direction := Input.get_axis("left", "right")
 			if direction:
 				velocity.x = direction * SPEED / ultra_instinct_factor
+				if direction < 0:
+					animated_sprite_2d.flip_h = true
+				else:
+					animated_sprite_2d.flip_h = false
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-		
+
 
 func _physics_process(delta: float) -> void:
 	if playingRecord:
 		PlaybackMove()
-		
+
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * GRAV_MULT * delta / ultra_instinct_factor ** 2
+		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
 
+	PlaybackMove()
 	move_and_slide()
 
 
@@ -69,7 +73,7 @@ func enter_ultra_instinct() -> void:
 	in_ultra_instinct_mode = true
 	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
 	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
-	
+
 	recorder.isRecording = true
 	playingRecord = false
 
@@ -78,7 +82,7 @@ func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
 	ultra_instinct_factor = 1
-	
+
 	recorder.isRecording = false
 	playingRecord = true
 
@@ -104,40 +108,41 @@ func get_player_in_end_mode() -> void:
 	leave_ultra_instinct()
 	set_process_input(false)
 	velocity.x = 0
-  
-	move_and_slide()
+
 
 func PlaybackMove():
 	playbackFrame += 1
-	var inputs = recorder.inputList
-	
+	# var inputs = recorder.inputList
+	var inputs: Array[InputFrame] = [InputFrame.new(0, InputActions.Action.RIGHT, true), InputFrame.new(120, InputActions.Action.RIGHT, false)]
+
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
-		
+
 		if f.action == InputActions.Action.JUMP and is_on_floor():
 			velocity.y = JUMP_VELOCITY / ultra_instinct_factor
-		
+
 		else:
 			if f.action == InputActions.Action.LEFT:
 				playback_left = f.pressed
 			if f.action == InputActions.Action.RIGHT:
 				playback_right = f.pressed
-		
+
 		playbackIndex += 1
-		
+
 	var dir := 0
 	if playback_left:
 		dir -= 1
 	if playback_right:
 		dir += 1
-		
+
 	if dir:
 		velocity.x = dir * SPEED / ultra_instinct_factor
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-		
+
 	if playbackIndex >= inputs.size():
 		EndPlayback()
+
 
 func EndPlayback():
 	playbackFrame = 0
