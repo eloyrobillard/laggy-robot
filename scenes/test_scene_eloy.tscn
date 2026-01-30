@@ -308,6 +308,7 @@ position = Vector2(6962, -888)
 scale = Vector2(3, 3)
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
+[connection signal="died" from="Player" to="Path2D" method="_on_player_died"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Path2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_entered_ultra_instinct_mode"]
