@@ -38,20 +38,15 @@ func _input(event: InputEvent) -> void:
 				and not recorder.isRecording
 				and not playingRecord ):
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+				animated_sprite_2d.play("jump-up")
 
 			# Get the input direction and handle the movement/deceleration.
 			# As good practice, you should replace UI actions with custom gameplay actions.
 			var direction := Input.get_axis("left", "right")
 			if direction:
 				velocity.x = direction * SPEED / ultra_instinct_factor
-				animated_sprite_2d.play("run")
-				if direction < 0:
-					animated_sprite_2d.flip_h = true
-				else:
-					animated_sprite_2d.flip_h = false
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-				animated_sprite_2d.play("idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -69,24 +64,35 @@ func _physics_process(delta: float) -> void:
 			0:
 				if move.pressed:
 					velocity.x = -SPEED / ultra_instinct_factor
-					animated_sprite_2d.play("run")
-					animated_sprite_2d.flip_h = true
 				else:
 					velocity.x = 0.0
-					animated_sprite_2d.play("idle")
+
 			# RIGHT
 			1:
 				if move.pressed:
 					velocity.x = SPEED / ultra_instinct_factor
-					animated_sprite_2d.play("run")
-					animated_sprite_2d.flip_h = false
 				else:
 					velocity.x = 0.0
-					animated_sprite_2d.play("idle")
 			# JUMP
 			2:
 				if move.pressed:
 					velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+
+	# animations
+	if velocity.y == 0:
+		if velocity.x == 0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("run")
+
+	else:
+		if velocity.y > 0:
+			animated_sprite_2d.play("jump-down")
+
+	if velocity.x < 0:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 	move_and_slide()
 
