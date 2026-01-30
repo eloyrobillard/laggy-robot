@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=39 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -9,13 +9,24 @@
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
 [ext_resource type="Script" path="res://scripts/you_died.gd" id="5_2bbt6"]
 [ext_resource type="Script" path="res://scripts/path_2d.gd" id="5_2pyty"]
+[ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="9_3atht"]
+[ext_resource type="Texture2D" uid="uid://d2l1t8oehrx3w" path="res://assets/netflix 1920/color stripes01.png" id="9_7a8fm"]
 [ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
+[ext_resource type="Texture2D" uid="uid://dovklkwe18tt" path="res://assets/netflix 1920/color stripes02.png" id="10_oh5pa"]
+[ext_resource type="Texture2D" uid="uid://chsj22jr83lpc" path="res://assets/netflix 1920/color stripes03.png" id="11_avimm"]
 [ext_resource type="PackedScene" uid="uid://b4wt86w4rbusl" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
+[ext_resource type="Texture2D" uid="uid://c5x6862ttt46j" path="res://assets/netflix 1920/color stripes04.png" id="12_ilgam"]
+[ext_resource type="Texture2D" uid="uid://djc6cp5874wdg" path="res://assets/netflix 1920/color stripes05.png" id="13_0dj57"]
 [ext_resource type="PackedScene" uid="uid://eqj1viun6ta6" path="res://scenes/moving_platform.tscn" id="13_5brqo"]
 [ext_resource type="PackedScene" uid="uid://dlyemutxqt3sn" path="res://scenes/press.tscn" id="14_iv2r6"]
+[ext_resource type="Texture2D" uid="uid://dmrmh10j1l3ou" path="res://assets/netflix 1920/color stripes06.png" id="14_lcpai"]
+[ext_resource type="Texture2D" uid="uid://c8quqng83fe1p" path="res://assets/netflix 1920/color stripes07.png" id="15_c47x1"]
 [ext_resource type="PackedScene" uid="uid://dk0jet826jy08" path="res://scenes/rotary_saw.tscn" id="15_hcrix"]
+[ext_resource type="Texture2D" uid="uid://cyqe8h0ppu2m2" path="res://assets/netflix 1920/color stripes08.png" id="16_xydg3"]
+[ext_resource type="Texture2D" uid="uid://qx8xxpg67h80" path="res://assets/netflix 1920/color stripes09.png" id="17_5y2ht"]
+[ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -46,20 +57,49 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2bbt6"]
-radius = 190.38297
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a8fm"]
+size = Vector2(412.7447, 2052.404)
 
-[sub_resource type="Gradient" id="Gradient_ehwlh"]
-interpolation_color_space = 1
-offsets = PackedFloat32Array(0.6, 0.72)
-colors = PackedColorArray(0.40253556, 0.08601982, 0.086659305, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2pyty"]
-gradient = SubResource("Gradient_ehwlh")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="SpriteFrames" id="SpriteFrames_uuc2l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_c6s3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7a8fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_oh5pa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_avimm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ilgam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0dj57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lcpai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_c47x1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xydg3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_5y2ht")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_6m3wp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
 
 [sub_resource type="Gradient" id="Gradient_egwr4"]
 offsets = PackedFloat32Array(0, 0.27333334)
@@ -151,12 +191,16 @@ cubic_interp = false
 [node name="Demon" type="Area2D" parent="Path2D/PathFollow2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Demon"]
-position = Vector2(0.0026362538, 0.07651925)
-shape = SubResource("CircleShape2D_2bbt6")
+position = Vector2(196.37495, -165.8996)
+shape = SubResource("RectangleShape2D_7a8fm")
 
-[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Demon"]
-scale = Vector2(1.7562985, 1.7562985)
-texture = SubResource("GradientTexture2D_2pyty")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow2D/Demon"]
+position = Vector2(-161.9516, 1.058569)
+scale = Vector2(1.4463112, 1)
+sprite_frames = SubResource("SpriteFrames_uuc2l")
+autoplay = "default"
+frame_progress = 0.20673436
+offset = Vector2(-100, 0)
 
 [node name="UltraInstinctLayer" type="CanvasLayer" parent="."]
 script = ExtResource("8_y2iih")
