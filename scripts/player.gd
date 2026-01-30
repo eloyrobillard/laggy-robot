@@ -182,6 +182,7 @@ func EndPlayback():
 
 func _on_press_hit_player() -> void:
 	die()
+	global_rotation_degrees = 90
 
 
 func _on_rotary_saw_split_player_in_half() -> void:
