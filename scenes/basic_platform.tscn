@@ -6,9 +6,11 @@ colors = PackedColorArray(0, 0.47058824, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_oexo1"]
 gradient = SubResource("Gradient_qvo8n")
+width = 256
+height = 256
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgo23"]
-size = Vector2(64, 64)
+size = Vector2(256, 256)
 
 [node name="StaticBody2D" type="StaticBody2D"]
 

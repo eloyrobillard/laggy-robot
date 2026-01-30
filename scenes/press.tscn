@@ -1,0 +1,129 @@
+[gd_scene load_steps=20 format=3 uid="uid://dlyemutxqt3sn"]
+
+[ext_resource type="Script" uid="uid://d0sxtoj7vwwqk" path="res://scripts/press.gd" id="1_no7md"]
+
+[sub_resource type="Gradient" id="Gradient_pftdy"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_no7md"]
+gradient = SubResource("Gradient_pftdy")
+height = 768
+
+[sub_resource type="Gradient" id="Gradient_5qlwf"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eayma"]
+gradient = SubResource("Gradient_5qlwf")
+height = 768
+
+[sub_resource type="Gradient" id="Gradient_0bk40"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wqb0m"]
+gradient = SubResource("Gradient_0bk40")
+height = 768
+
+[sub_resource type="Gradient" id="Gradient_0w1v4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.64705884, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ik3w7"]
+gradient = SubResource("Gradient_0w1v4")
+width = 768
+height = 128
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pftdy"]
+size = Vector2(768, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_no7md"]
+size = Vector2(768, 20)
+
+[sub_resource type="Gradient" id="Gradient_mdgh4"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.64705884, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uloyq"]
+gradient = SubResource("Gradient_mdgh4")
+height = 640
+
+[sub_resource type="Gradient" id="Gradient_rhlfb"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vw7on"]
+gradient = SubResource("Gradient_rhlfb")
+width = 768
+height = 256
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsrxx"]
+size = Vector2(768, 256)
+
+[sub_resource type="Gradient" id="Gradient_arij0"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_70t0g"]
+gradient = SubResource("Gradient_arij0")
+width = 768
+height = 640
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bk40"]
+size = Vector2(768, 640)
+
+[node name="Press" type="Node2D"]
+script = ExtResource("1_no7md")
+
+[node name="LeftSupport" type="Sprite2D" parent="."]
+position = Vector2(-351, -139)
+texture = SubResource("GradientTexture2D_no7md")
+
+[node name="CentralSupport" type="Sprite2D" parent="."]
+position = Vector2(0, -139)
+texture = SubResource("GradientTexture2D_eayma")
+
+[node name="RightSupport" type="Sprite2D" parent="."]
+position = Vector2(353, -139)
+texture = SubResource("GradientTexture2D_wqb0m")
+
+[node name="PressBody" type="AnimatableBody2D" parent="."]
+position = Vector2(1, -459)
+
+[node name="Sprite2D" type="Sprite2D" parent="PressBody"]
+texture = SubResource("GradientTexture2D_ik3w7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PressBody"]
+shape = SubResource("RectangleShape2D_pftdy")
+
+[node name="Area2D" type="Area2D" parent="PressBody"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PressBody/Area2D"]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_no7md")
+
+[node name="PressShaft" type="Sprite2D" parent="PressBody"]
+position = Vector2(0, -384)
+texture = SubResource("GradientTexture2D_uloyq")
+
+[node name="PressBottom" type="StaticBody2D" parent="."]
+position = Vector2(1, 373)
+
+[node name="Sprite2D" type="Sprite2D" parent="PressBottom"]
+texture = SubResource("GradientTexture2D_vw7on")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PressBottom"]
+shape = SubResource("RectangleShape2D_rsrxx")
+
+[node name="PressTop" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PressTop"]
+position = Vector2(1, -843)
+texture = SubResource("GradientTexture2D_70t0g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PressTop"]
+position = Vector2(0, -843)
+shape = SubResource("RectangleShape2D_0bk40")
+
+[connection signal="body_entered" from="PressBody/Area2D" to="." method="_on_press_body_body_entered"]

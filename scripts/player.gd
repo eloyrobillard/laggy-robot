@@ -1,27 +1,27 @@
 extends CharacterBody2D
 
-@onready var recorder = $ActionsRecorder
-
 signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var recorder: Node = $ActionsRecorder
+
 const ULTRA_INSTINCT_SLOW_DOWN = 50
-const SPEED = 400.0
-const JUMP_VELOCITY = -800.0
-const GRAV_MULT = 3
+const SPEED = 1000.0
+const JUMP_VELOCITY = -1500.0
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
 var can_enter_ultra_instinct = true
-
 
 var playingRecord := false
 var playbackFrame := 0
 var playbackIndex := 0
 var playback_left := false
 var playback_right := false
+
 
 func _input(event: InputEvent) -> void:
 	match event.get_class():
@@ -34,11 +34,12 @@ func _input(event: InputEvent) -> void:
 					enter_ultra_instinct()
 
 			# Handle jump.
-			if (Input.is_action_just_pressed("jump") 
-					and is_on_floor() 
-					and not recorder.isRecording 
-					and not playingRecord):
+			if (Input.is_action_just_pressed("jump")
+				and is_on_floor()
+				and not recorder.isRecording
+				and not playingRecord ):
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+				animated_sprite_2d.play("jump-up")
 
 			# Get the input direction and handle the movement/deceleration.
 			# As good practice, you should replace UI actions with custom gameplay actions.
@@ -47,15 +48,31 @@ func _input(event: InputEvent) -> void:
 				velocity.x = direction * SPEED / ultra_instinct_factor
 			else:
 				velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-		
+
 
 func _physics_process(delta: float) -> void:
 	if playingRecord:
 		PlaybackMove()
-		
+
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * GRAV_MULT * delta / ultra_instinct_factor ** 2
+		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
+
+	# animations
+	if velocity.y == 0:
+		if velocity.x == 0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("run")
+
+	else:
+		if velocity.y > 0:
+			animated_sprite_2d.play("jump-down")
+
+	if velocity.x < 0:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 	move_and_slide()
 
@@ -69,7 +86,7 @@ func enter_ultra_instinct() -> void:
 	in_ultra_instinct_mode = true
 	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
 	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
-	
+
 	recorder.isRecording = true
 	playingRecord = false
 
@@ -78,20 +95,18 @@ func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
 	ultra_instinct_factor = 1
-	
+
 	recorder.isRecording = false
 	playingRecord = true
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	get_player_in_end_mode()
-	died.emit()
+	die()
 
 
 func _on_demon_body_entered(body: Node2D) -> void:
 	if body == self:
-		get_player_in_end_mode()
-		died.emit()
+		die()
 
 
 func _on_exit_body_entered(body: Node2D) -> void:
@@ -103,41 +118,50 @@ func _on_exit_body_entered(body: Node2D) -> void:
 func get_player_in_end_mode() -> void:
 	leave_ultra_instinct()
 	set_process_input(false)
+	set_physics_process(false)
+	animated_sprite_2d.pause()
 	velocity.x = 0
-  
-	move_and_slide()
+
+
+func die() -> void:
+	get_player_in_end_mode()
+	died.emit()
+
 
 func PlaybackMove():
 	playbackFrame += 1
-	var inputs = recorder.inputList
-	
+	# var inputs = recorder.inputList
+	var inputs: Array[InputFrame] = [InputFrame.new(1, InputActions.Action.RIGHT, true), InputFrame.new(30, InputActions.Action.JUMP, true), InputFrame.new(60, InputActions.Action.RIGHT, false)]
+
+	var result: Array[InputFrame]
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
-		
+
 		if f.action == InputActions.Action.JUMP and is_on_floor():
 			velocity.y = JUMP_VELOCITY / ultra_instinct_factor
-		
+
 		else:
 			if f.action == InputActions.Action.LEFT:
 				playback_left = f.pressed
 			if f.action == InputActions.Action.RIGHT:
 				playback_right = f.pressed
-		
+
 		playbackIndex += 1
-		
+
 	var dir := 0
 	if playback_left:
 		dir -= 1
 	if playback_right:
 		dir += 1
-		
+
 	if dir:
 		velocity.x = dir * SPEED / ultra_instinct_factor
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
-		
+
 	if playbackIndex >= inputs.size():
 		EndPlayback()
+
 
 func EndPlayback():
 	playbackFrame = 0
@@ -145,3 +169,11 @@ func EndPlayback():
 	playingRecord = false
 	recorder.inputList.clear()
 	recorder.currentFrame = 0
+
+
+func _on_press_hit_player() -> void:
+	die()
+
+
+func _on_rotary_saw_split_player_in_half() -> void:
+	die()
