@@ -13,6 +13,8 @@ height = 256
 size = Vector2(256, 256)
 
 [node name="StaticBody2D" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 13
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_oexo1")
