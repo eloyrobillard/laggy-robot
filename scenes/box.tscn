@@ -20,7 +20,7 @@ size = Vector2(384, 384)
 [node name="Box" type="RigidBody2D" groups=["box"]]
 collision_layer = 8
 collision_mask = 15
-mass = 10.0
+mass = 60.0
 physics_material_override = SubResource("PhysicsMaterial_3inec")
 max_contacts_reported = 10
 script = ExtResource("1_3inec")
