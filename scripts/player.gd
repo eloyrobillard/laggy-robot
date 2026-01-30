@@ -87,8 +87,10 @@ func enter_ultra_instinct() -> void:
 	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
 	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
 
+	if playingRecord:
+		velocity.x = 0
 	recorder.isRecording = true
-	playingRecord = false
+	EndPlayback()
 
 
 func leave_ultra_instinct() -> void:
@@ -130,10 +132,8 @@ func die() -> void:
 
 func PlaybackMove():
 	playbackFrame += 1
-	# var inputs = recorder.inputList
-	var inputs: Array[InputFrame] = [InputFrame.new(1, InputActions.Action.RIGHT, true), InputFrame.new(30, InputActions.Action.JUMP, true), InputFrame.new(60, InputActions.Action.RIGHT, false)]
+	var inputs = recorder.inputList
 
-	var result: Array[InputFrame]
 	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
 
@@ -169,6 +169,8 @@ func EndPlayback():
 	playingRecord = false
 	recorder.inputList.clear()
 	recorder.currentFrame = 0
+	playback_left = false
+	playback_right = false
 
 
 func _on_press_hit_player() -> void:
