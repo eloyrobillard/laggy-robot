@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=40 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
 [ext_resource type="Script" path="res://scripts/you_died.gd" id="5_2bbt6"]
-[ext_resource type="Script" path="res://scripts/path_2d.gd" id="5_2pyty"]
+[ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" path="res://scripts/hud.gd" id="9_3atht"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://cyqe8h0ppu2m2" path="res://assets/netflix 1920/color stripes08.png" id="16_xydg3"]
 [ext_resource type="Texture2D" uid="uid://qx8xxpg67h80" path="res://assets/netflix 1920/color stripes09.png" id="17_5y2ht"]
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
+[ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -306,6 +307,9 @@ rot_speed_deg_sec = -1080.0
 [node name="ConveyorBelt" parent="." instance=ExtResource("4_uuc2l")]
 position = Vector2(6962, -888)
 scale = Vector2(3, 3)
+
+[node name="Box" parent="." instance=ExtResource("28_7a8fm")]
+position = Vector2(5961, -2381)
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
 [connection signal="died" from="Player" to="Path2D" method="_on_player_died"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://cx653q3t8v0vi"]
+
+[ext_resource type="Script" uid="uid://dw5lq5me6hx48" path="res://scripts/box.gd" id="1_3inec"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3inec"]
+friction = 0.1
+
+[sub_resource type="Gradient" id="Gradient_on5l8"]
+offsets = PackedFloat32Array(0.52)
+colors = PackedColorArray(0.52, 0.52, 0.52, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3inec"]
+gradient = SubResource("Gradient_on5l8")
+width = 384
+height = 384
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks2v0"]
+size = Vector2(384, 384)
+
+[node name="Box" type="RigidBody2D" groups=["box"]]
+collision_layer = 8
+collision_mask = 15
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_3inec")
+max_contacts_reported = 10
+script = ExtResource("1_3inec")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_3inec")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ks2v0")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-192, -192, 384, 384)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

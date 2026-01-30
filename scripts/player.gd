@@ -75,6 +75,15 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("jump-down")
 
 	move_and_slide()
+	check_box()
+
+
+func check_box():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider.is_in_group("box"):
+			collider.apply_impulse(-collision.get_normal() * 1000)
 
 
 func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
