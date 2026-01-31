@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=43 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -29,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 [ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
 [ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
+[ext_resource type="PackedScene" uid="uid://buhdl02ckpug5" path="res://scenes/lava_pool.tscn" id="30_avimm"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
@@ -36,32 +37,42 @@ scenes/1/scene = ExtResource("2_4yv2b")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oh5pa"]
 texture = ExtResource("29_oh5pa")
 texture_region_size = Vector2i(256, 256)
-0:0/0 = 0
-2:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
 4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 2.9230957, -128, 4.8717957, 128, 128, 128)
 0:3/0 = 0
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, -10.717941, -7.794876, 128, 128, -128, 128)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 128, -128, 128)
 3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, 11.6923065, 128, 12.6666565)
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
 0:4/0 = 0
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, 128)
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, 128, 128)
 3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
 4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 4.8717957, -8.769226, 6.820511, -128, 74.05127, -128, 128, 128, 128)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 4.8717957, -128, 4.8717957, -128, 128, 128, 128)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.8717957, 5.8461456, -128, 4.8717957, -128, 128, 128, 128, 128, 68.20511)
+1:1/size_in_atlas = Vector2i(2, 2)
+1:1/0 = 0
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.9230652, -128, -128, -128, -128, 128, -1.9487152, 128)
 
 [sub_resource type="TileSet" id="TileSet_0ojeu"]
 tile_layout = 4
 tile_size = Vector2i(256, 256)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 13
 sources/0 = SubResource("TileSetScenesCollectionSource_ylc0x")
 sources/2 = SubResource("TileSetAtlasSource_oh5pa")
 
@@ -144,7 +155,7 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(9872, -1312)
+position = Vector2(1184, -728)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
@@ -155,7 +166,7 @@ BASE_ZOOM = 0.5
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(1800, -760)
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQAQAP//AAAAAAAAAQARAP//AAAAAAAAAQAfAP//AAAAAAAAAQAgAP//AAAAAAAAAQAjAP//AAAAAAAAAQAkAP//AAAAAAAAAQAlAP//AAAAAAAAAQA=")
+tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQAAAAFAP//AgAEAAQAAAAGAP//AgAEAAQAAAAHAP//AgAEAAQAAAAIAP//AgAEAAQAAAD7/wEAAgAEAAQAAAD8/wEAAgAEAAQAAAD9/wEAAgAEAAQAAAD+/wEAAgAEAAQAAAD//wEAAgAEAAQAAAAAAAEAAgAEAAQAAAABAAEAAgABAAQAAAABAAAAAgACAAMAAAANAP//AgAEAAQAAAAOAP//AgAEAAQAAAAPAP//AgAEAAQAAAAQAP//AgAEAAQAAAARAP//AgAEAAQAAAASAP//AgAEAAQAAAAYAP//AgAEAAQAAAA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
@@ -308,7 +319,6 @@ node = NodePath("../Player")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("13_5brqo")]
 position = Vector2(4624, -888)
-scale = Vector2(2, 1)
 y_top_limit = -256.0
 y_bottom_limit = 256.0
 x_right_limit = 256.0
@@ -327,18 +337,22 @@ transition_down = 2
 
 [node name="RotarySaw" parent="." instance=ExtResource("15_hcrix")]
 z_index = -1
-position = Vector2(5139, -953)
+position = Vector2(5139, -912)
 scale = Vector2(2, 2)
 constant_angular_velocity = 0.0
 rot_speed_deg_sec = -1080.0
 
 [node name="ConveyorBelt" parent="." instance=ExtResource("4_uuc2l")]
-position = Vector2(6962, -888)
+position = Vector2(9112, -408)
 scale = Vector2(3, 3)
 
 [node name="Box" parent="." instance=ExtResource("28_7a8fm")]
 position = Vector2(5961, -2381)
 mass = 100.0
+
+[node name="LavaPool" parent="." instance=ExtResource("30_avimm")]
+position = Vector2(7304, -844)
+scale = Vector2(1.4, 0.68)
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
 [connection signal="died" from="Player" to="Path2D" method="_on_player_died"]
@@ -356,3 +370,4 @@ mass = 100.0
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
 [connection signal="hit_player" from="Press" to="Player" method="_on_press_hit_player"]
 [connection signal="split_player_in_half" from="RotarySaw" to="Player" method="_on_rotary_saw_split_player_in_half"]
+[connection signal="player_fell_in" from="LavaPool" to="Player" method="_on_lava_pool_player_fell_in"]
