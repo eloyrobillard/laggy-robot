@@ -1,13 +1,11 @@
-[gd_scene load_steps=43 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
-[ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
+[ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
 [ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" path="res://scripts/you_win.gd" id="3_ylc0x"]
-[ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
-[ext_resource type="Script" path="res://scripts/you_died.gd" id="5_2bbt6"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
@@ -28,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://qx8xxpg67h80" path="res://assets/netflix 1920/color stripes09.png" id="17_5y2ht"]
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 [ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
+[ext_resource type="PackedScene" uid="uid://c22bcn6g4r8ca" path="res://scenes/death_menu.tscn" id="29_avimm"]
 [ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
 [ext_resource type="PackedScene" uid="uid://buhdl02ckpug5" path="res://scenes/lava_pool.tscn" id="30_avimm"]
 
@@ -188,36 +187,6 @@ offset_bottom = -103.0
 theme_override_font_sizes/font_size = 128
 text = "Exit"
 
-[node name="YouDiedLayer" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("5_2bbt6")
-
-[node name="Panel" type="Panel" parent="YouDiedLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="YouDied" type="Label" parent="YouDiedLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -219.0
-offset_top = -44.0
-offset_right = 219.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_color = Color(0.5058824, 0.15686275, 0.16470589, 1)
-theme_override_font_sizes/font_size = 256
-text = "YOU DIED"
-
-[node name="YouDiedAudio" type="AudioStreamPlayer" parent="YouDiedLayer"]
-stream = ExtResource("4_6b8dj")
-
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6b8dj")
 script = ExtResource("5_2pyty")
@@ -348,14 +317,15 @@ scale = Vector2(3, 3)
 
 [node name="Box" parent="." instance=ExtResource("28_7a8fm")]
 position = Vector2(5961, -2381)
-mass = 100.0
 
 [node name="LavaPool" parent="." instance=ExtResource("30_avimm")]
 position = Vector2(7304, -844)
 scale = Vector2(1.4, 0.68)
 
-[connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
+[node name="DeathMenu" parent="." instance=ExtResource("29_avimm")]
+
 [connection signal="died" from="Player" to="Path2D" method="_on_player_died"]
+[connection signal="died" from="Player" to="DeathMenu" method="_on_player_died"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Path2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_entered_ultra_instinct_mode"]
@@ -365,9 +335,9 @@ scale = Vector2(1.4, 0.68)
 [connection signal="won" from="Player" to="Path2D" method="_on_player_won"]
 [connection signal="won" from="Player" to="VictoryLayer" method="_on_player_won"]
 [connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
-[connection signal="restart_level" from="YouDiedLayer" to="." method="_on_canvas_layer_restart_level"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
 [connection signal="hit_player" from="Press" to="Player" method="_on_press_hit_player"]
 [connection signal="split_player_in_half" from="RotarySaw" to="Player" method="_on_rotary_saw_split_player_in_half"]
 [connection signal="player_fell_in" from="LavaPool" to="Player" method="_on_lava_pool_player_fell_in"]
+[connection signal="restart_level" from="DeathMenu" to="." method="_on_death_menu_restart_level"]

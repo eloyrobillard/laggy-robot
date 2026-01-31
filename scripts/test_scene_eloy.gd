@@ -10,7 +10,7 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_canvas_layer_restart_level() -> void:
+func _on_death_menu_restart_level() -> void:
 	var level = preload("res://scenes/test_scene_eloy.tscn").instantiate()
 	get_tree().root.add_child(level)
 	queue_free()

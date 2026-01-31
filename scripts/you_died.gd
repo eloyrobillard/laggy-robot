@@ -2,7 +2,8 @@ extends CanvasLayer
 
 signal restart_level
 
-@onready var you_died_audio: AudioStreamPlayer = $YouDiedAudio
+@onready var try_again: Button = $TryAgain
+@onready var quit: Button = $Quit
 
 
 # Called when the node enters the scene tree for the first time.
@@ -14,10 +15,13 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_player_died() -> void:
 	visible = true
-	you_died_audio.play()
 
-	await get_tree().create_timer(3.0).timeout
+
+func _on_try_again_button_down() -> void:
 	restart_level.emit()
+
+
+func _on_quit_button_down() -> void:
+	get_tree().quit()

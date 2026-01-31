@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://c22bcn6g4r8ca"]
+
+[ext_resource type="Script" uid="uid://yqm4laaasrgm" path="res://scripts/you_died.gd" id="1_latkk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_latkk"]
+bg_color = Color(0.39308518, 0.3930856, 0.39308548, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gm7js"]
+bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
+
+[node name="DeathMenu" type="CanvasLayer"]
+script = ExtResource("1_latkk")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TryAgain" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.0
+offset_top = -41.0
+offset_right = 244.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_latkk")
+text = "Try Again"
+
+[node name="Quit" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = 182.0
+offset_right = 190.0
+offset_bottom = 355.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_gm7js")
+text = "Quit"
+
+[node name="YouDied" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -603.0
+offset_top = -436.0
+offset_right = 603.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5058824, 0.15686275, 0.16470589, 1)
+theme_override_font_sizes/font_size = 256
+text = "YOU DIED"
+
+[connection signal="button_down" from="TryAgain" to="." method="_on_try_again_button_down"]
+[connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]
