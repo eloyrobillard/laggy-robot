@@ -1,44 +1,76 @@
-[gd_scene load_steps=14 format=3 uid="uid://q6871l13ss6m"]
+[gd_scene load_steps=15 format=3 uid="uid://q6871l13ss6m"]
 
 [ext_resource type="Script" uid="uid://bokjt47usnxpn" path="res://scripts/conveyor_belt.gd" id="1_65uwv"]
+[ext_resource type="Texture2D" uid="uid://7df7ce5x4sol" path="res://assets/gear/gear_1.png" id="2_it644"]
+[ext_resource type="Texture2D" uid="uid://oht5fir1axwa" path="res://assets/gear/gear_2.png" id="3_pim3x"]
+[ext_resource type="Texture2D" uid="uid://daqiwailhh722" path="res://assets/gear/gear_3.png" id="4_nlha8"]
+[ext_resource type="Texture2D" uid="uid://bvy7aj6qjbjyh" path="res://assets/gear/gear_4.png" id="5_g4y7j"]
 
-[sub_resource type="Gradient" id="Gradient_4n2of"]
-offsets = PackedFloat32Array(0.54, 0.56666666, 0.69666666, 0.72)
-colors = PackedColorArray(0.61, 0.61, 0.61, 1, 0.32941177, 0.0627451, 0.0627451, 1, 0.3307344, 0.06387434, 0.06441791, 1, 1, 1, 1, 0)
-metadata/_snap_count = 2
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_65uwv"]
-gradient = SubResource("Gradient_4n2of")
-width = 128
-height = 128
-fill = 1
-fill_from = Vector2(0.5, 0.50233644)
-
-[sub_resource type="Gradient" id="Gradient_fy46w"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_4dsgs"]
-gradient = SubResource("Gradient_fy46w")
-width = 32
-height = 8
-
-[sub_resource type="Gradient" id="Gradient_65uwv"]
-offsets = PackedFloat32Array(0.60333335, 0.64666665)
-colors = PackedColorArray(0.48333332, 0.48333332, 0.48333332, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fy46w"]
-gradient = SubResource("Gradient_65uwv")
-width = 8
-height = 8
-fill = 1
-fill_from = Vector2(0.49532712, 0.49766356)
+[sub_resource type="SpriteFrames" id="SpriteFrames_444fa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_it644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pim3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nlha8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4y7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n2of"]
-radius = 64.0
+radius = 110.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pim3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_it644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pim3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nlha8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4y7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_it644"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_it644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pim3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nlha8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4y7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_65uwv"]
-radius = 64.0
+radius = 110.0
 
 [sub_resource type="Gradient" id="Gradient_4dsgs"]
 offsets = PackedFloat32Array(0.76666665, 1)
@@ -65,55 +97,30 @@ script = ExtResource("1_65uwv")
 [node name="WheelLeft" type="StaticBody2D" parent="."]
 constant_angular_velocity = -1.5707964
 
-[node name="WheelLeft" type="Sprite2D" parent="WheelLeft"]
-texture = SubResource("GradientTexture2D_65uwv")
-
-[node name="Shaft" type="Sprite2D" parent="WheelLeft/WheelLeft"]
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="Shaft2" type="Sprite2D" parent="WheelLeft/WheelLeft"]
-rotation = 1.5707964
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="TinyWheel" type="Sprite2D" parent="WheelLeft/WheelLeft"]
-texture = SubResource("GradientTexture2D_fy46w")
+[node name="WheelLeft" type="AnimatedSprite2D" parent="WheelLeft"]
+sprite_frames = SubResource("SpriteFrames_444fa")
+autoplay = "default"
+frame_progress = 0.9052367
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelLeft"]
 shape = SubResource("CircleShape2D_4n2of")
 
-[node name="WheelMiddle" type="Sprite2D" parent="."]
-position = Vector2(157, 0)
-texture = SubResource("GradientTexture2D_65uwv")
-
-[node name="Shaft" type="Sprite2D" parent="WheelMiddle"]
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="Shaft2" type="Sprite2D" parent="WheelMiddle"]
-rotation = 1.5707964
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="TinyWheel" type="Sprite2D" parent="WheelMiddle"]
-texture = SubResource("GradientTexture2D_fy46w")
+[node name="WheelMiddle" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 0)
+sprite_frames = SubResource("SpriteFrames_pim3x")
+autoplay = "default"
+frame_progress = 0.5146602
 
 [node name="WheelRight" type="StaticBody2D" parent="."]
+position = Vector2(640, 0)
 constant_angular_velocity = 1.5707964
 
-[node name="WheelRight" type="Sprite2D" parent="WheelRight"]
-position = Vector2(319, 0)
-texture = SubResource("GradientTexture2D_65uwv")
-
-[node name="Shaft" type="Sprite2D" parent="WheelRight/WheelRight"]
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="Shaft2" type="Sprite2D" parent="WheelRight/WheelRight"]
-rotation = 1.5707964
-texture = SubResource("GradientTexture2D_4dsgs")
-
-[node name="TinyWheel" type="Sprite2D" parent="WheelRight/WheelRight"]
-texture = SubResource("GradientTexture2D_fy46w")
+[node name="WheelRight" type="AnimatedSprite2D" parent="WheelRight"]
+sprite_frames = SubResource("SpriteFrames_it644")
+autoplay = "default"
+frame_progress = 0.0216403
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelRight"]
-position = Vector2(319, 0)
 shape = SubResource("CircleShape2D_65uwv")
 
 [node name="TopMat" type="StaticBody2D" parent="."]
