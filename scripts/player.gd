@@ -13,7 +13,6 @@ const SPEED = 1000.0
 const JUMP_VELOCITY = -1500.0
 
 var in_ultra_instinct_mode = false
-var ultra_instinct_factor = 1
 var can_enter_ultra_instinct = true
 
 var playingRecord := false
@@ -38,7 +37,7 @@ func _input(event: InputEvent) -> void:
 				and is_on_floor()
 				and not recorder.isRecording
 				and not playingRecord ):
-				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+				velocity.y = JUMP_VELOCITY
 				animated_sprite_2d.play("jump-up")
 
 
@@ -48,20 +47,20 @@ func _physics_process(delta: float) -> void:
 
 	# Add the gravity.
 	if not is_on_floor():
-		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
+		velocity += get_gravity() * delta
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
 	if direction:
-		velocity.x = direction * SPEED / ultra_instinct_factor
+		velocity.x = direction * SPEED
 
 		if direction < 0:
 			animated_sprite_2d.flip_h = true
 		else:
 			animated_sprite_2d.flip_h = false
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# animations
 	if velocity.y == 0:
@@ -94,7 +93,8 @@ func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
 func enter_ultra_instinct() -> void:
 	in_ultra_instinct_mode = true
 	entered_ultra_instinct_mode.emit(ULTRA_INSTINCT_SLOW_DOWN)
-	ultra_instinct_factor = ULTRA_INSTINCT_SLOW_DOWN
+	if Engine.time_scale == 1:
+		Engine.time_scale /= ULTRA_INSTINCT_SLOW_DOWN
 
 	if playingRecord:
 		velocity.x = 0
@@ -105,7 +105,7 @@ func enter_ultra_instinct() -> void:
 func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
-	ultra_instinct_factor = 1
+	Engine.time_scale = 1
 
 	recorder.isRecording = false
 	playingRecord = true
@@ -147,7 +147,7 @@ func PlaybackMove():
 		var f = inputs[playbackIndex]
 
 		if f.action == InputActions.Action.JUMP and is_on_floor():
-			velocity.y = JUMP_VELOCITY / ultra_instinct_factor
+			velocity.y = JUMP_VELOCITY
 
 		else:
 			if f.action == InputActions.Action.LEFT:
@@ -164,9 +164,9 @@ func PlaybackMove():
 		dir += 1
 
 	if dir:
-		velocity.x = dir * SPEED / ultra_instinct_factor
+		velocity.x = dir * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	if playbackIndex >= inputs.size():
 		EndPlayback()

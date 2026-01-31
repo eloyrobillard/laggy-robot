@@ -9,7 +9,7 @@ signal ultra_instinct_depleted
 @export var MAX_ULTRA_INSTINCT_SEC := 20.0
 
 var in_ultra_instinct_mode = false
-var ultra_instinct_factor = 1
+var ultra_instinct_factor
 var current_ultra_instinct_sec
 var current_ultra_instinct_percent
 
@@ -26,9 +26,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if in_ultra_instinct_mode:
-		ultra_instinct_tint.modulate.a += delta / ultra_instinct_factor
-		ultra_instinct_tint_2.modulate.a += delta / ultra_instinct_factor
-		current_ultra_instinct_sec -= delta
+		ultra_instinct_tint.modulate.a += delta
+		ultra_instinct_tint_2.modulate.a += delta
+		current_ultra_instinct_sec -= delta * ultra_instinct_factor
 		current_ultra_instinct_percent = current_ultra_instinct_sec / MAX_ULTRA_INSTINCT_SEC * 100.0
 		progress_bar.set_value_no_signal(current_ultra_instinct_percent)
 

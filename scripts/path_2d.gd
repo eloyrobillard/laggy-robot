@@ -1,8 +1,8 @@
 extends Path2D
 
-const BASE_INV_SPEED = 5
+## Greate value means slower speed
+@export var inverse_speed = 5
 
-var inverse_speed = BASE_INV_SPEED
 var t = 0.0
 
 
@@ -14,14 +14,6 @@ func _ready() -> void:
 func _process(delta):
 	t += delta / inverse_speed
 	global_position = curve.sample_baked(t * curve.get_baked_length(), false)
-
-
-func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
-	inverse_speed = BASE_INV_SPEED * slow_down_factor
-
-
-func _on_player_left_ultra_instrinct_mode() -> void:
-	inverse_speed = BASE_INV_SPEED
 
 
 func _on_player_won() -> void:
