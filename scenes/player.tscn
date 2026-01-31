@@ -8,7 +8,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
 radius = 82.0
-height = 454.0
+height = 482.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_dqkch")
@@ -203,12 +203,12 @@ debug_color = Color(0.8039216, 0.6, 0.69803923, 0.41960785)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 scale = Vector2(2, 2)
-rect = Rect2(-71, -118, 154, 232)
+rect = Rect2(-71, -135.5, 154, 259)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_3vyb7")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="ActionsRecorder" type="Node" parent="."]
