@@ -6,7 +6,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -15,12 +15,11 @@ func _process(delta: float) -> void:
 
 
 func _on_start_menu_start_game() -> void:
-	var level_scene = preload("res://scenes/test_scene_eloy.tscn").instantiate()
+	var level_scene = load("res://scenes/test_scene_eloy.tscn").instantiate()
 	start_menu.visible = false
 	controls_layer.visible = true
 
 	await get_tree().create_timer(2.0).timeout
 	get_tree().root.add_child(level_scene)
 	controls_layer.visible = false
-	level_scene.visible = true
 	queue_free()

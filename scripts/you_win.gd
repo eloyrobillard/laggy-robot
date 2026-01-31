@@ -1,9 +1,6 @@
 extends CanvasLayer
 
-signal restart_level
-
-@onready var win_audio: AudioStreamPlayer = $WinAudio
-
+signal go_back_to_main_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +14,6 @@ func _process(delta: float) -> void:
 
 func _on_player_won() -> void:
 	visible = true
-	win_audio.play()
 
 	await get_tree().create_timer(3.0).timeout
-	restart_level.emit()
+	go_back_to_main_menu.emit()

@@ -1,17 +1,16 @@
-[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=41 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
 [ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
-[ext_resource type="Script" path="res://scripts/you_win.gd" id="3_ylc0x"]
+[ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
 [ext_resource type="Texture2D" uid="uid://d2l1t8oehrx3w" path="res://assets/netflix 1920/color stripes01.png" id="9_7a8fm"]
-[ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
 [ext_resource type="Texture2D" uid="uid://dovklkwe18tt" path="res://assets/netflix 1920/color stripes02.png" id="10_oh5pa"]
 [ext_resource type="Texture2D" uid="uid://chsj22jr83lpc" path="res://assets/netflix 1920/color stripes03.png" id="11_avimm"]
 [ext_resource type="PackedScene" uid="uid://b4wt86w4rbusl" path="res://scenes/debug_layer.tscn" id="12_40tyl"]
@@ -169,7 +168,7 @@ tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQ
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(4368, -2285)
+position = Vector2(5814, -1250)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)
@@ -280,9 +279,6 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 256
 text = "VICTORY"
 
-[node name="WinAudio" type="AudioStreamPlayer" parent="VictoryLayer"]
-stream = ExtResource("10_beqnb")
-
 [node name="DebugLayer" parent="." node_paths=PackedStringArray("node") instance=ExtResource("12_40tyl")]
 node = NodePath("../Player")
 
@@ -337,6 +333,7 @@ scale = Vector2(1.4, 0.68)
 [connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
+[connection signal="go_back_to_main_menu" from="VictoryLayer" to="." method="_on_victory_layer_go_back_to_main_menu"]
 [connection signal="hit_player" from="Press" to="Player" method="_on_press_hit_player"]
 [connection signal="split_player_in_half" from="RotarySaw" to="Player" method="_on_rotary_saw_split_player_in_half"]
 [connection signal="player_fell_in" from="LavaPool" to="Player" method="_on_lava_pool_player_fell_in"]
