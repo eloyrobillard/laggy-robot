@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
-[ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
+[ext_resource type="Script" uid="uid://dqnkny4sscyyu" path="res://scripts/path_follow_2d.gd" id="6_oh5pa"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
@@ -92,9 +92,9 @@ size = Vector2(511, 275.5)
 
 [sub_resource type="Curve2D" id="Curve2D_6b8dj"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 2096, -44, 0, 0, 0, 0, 2454, -294, 0, 0, 0, 0, 2728, -306, 0, 0, 0, 0, 3026, -592, 0, 0, 0, 0, 3973, -598)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -34, 0, 0, 0, 0, 12663, -36)
 }
-point_count = 6
+point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7a8fm"]
 size = Vector2(412.7447, 2052.404)
@@ -189,13 +189,13 @@ text = "Exit"
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6b8dj")
-script = ExtResource("5_2pyty")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-4.0552974, -883.9903)
-rotation = -0.0047709565
+position = Vector2(-0.13424939, -884)
+rotation = -0.00015794046
 v_offset = -850.0
 cubic_interp = false
+script = ExtResource("6_oh5pa")
 
 [node name="Demon" type="Area2D" parent="Path2D/PathFollow2D"]
 
@@ -326,7 +326,7 @@ z_index = -4096
 position = Vector2(5849, -765)
 texture = ExtResource("29_ilgam")
 
-[connection signal="died" from="Player" to="Path2D" method="_on_player_died"]
+[connection signal="died" from="Player" to="Path2D/PathFollow2D" method="_on_player_died"]
 [connection signal="died" from="Player" to="DeathMenu" method="_on_player_died"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Path2D" method="_on_player_entered_ultra_instinct_mode"]
@@ -334,7 +334,7 @@ texture = ExtResource("29_ilgam")
 [connection signal="left_ultra_instrinct_mode" from="Player" to="Player/Camera2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="Path2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_left_ultra_instrinct_mode"]
-[connection signal="won" from="Player" to="Path2D" method="_on_player_won"]
+[connection signal="won" from="Player" to="Path2D/PathFollow2D" method="_on_player_won"]
 [connection signal="won" from="Player" to="VictoryLayer" method="_on_player_won"]
 [connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]

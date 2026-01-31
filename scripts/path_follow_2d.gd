@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-const BASE_INV_SPEED = 5
+const BASE_INV_SPEED = 25
 
 var inverse_speed = BASE_INV_SPEED
 
@@ -11,7 +11,7 @@ func _ready() -> void:
 
 
 func _process(delta):
-	progress_ratio += delta / 1.2 / inverse_speed
+	progress_ratio += delta / inverse_speed
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
