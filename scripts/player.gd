@@ -187,3 +187,7 @@ func _on_press_hit_player() -> void:
 
 func _on_rotary_saw_split_player_in_half() -> void:
 	die()
+
+
+func _on_lava_pool_player_fell_in() -> void:
+	die()
