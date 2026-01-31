@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cq7o0nkfm356e"]
+[gd_scene load_steps=5 format=3 uid="uid://cq7o0nkfm356e"]
+
+[ext_resource type="Script" uid="uid://jw6kpfaskwmx" path="res://scripts/start_menu.gd" id="1_ouf4f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uojun"]
 
@@ -9,6 +11,7 @@ bg_color = Color(0.39308518, 0.3930856, 0.39308548, 1)
 bg_color = Color(0.39215687, 0.39215687, 0.39215687, 1)
 
 [node name="StartMenu" type="CanvasLayer"]
+script = ExtResource("1_ouf4f")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -88,3 +91,6 @@ bbcode_enabled = true
 text = "[b][wave amp=100.0 freq=2.0 connected=1]LAGGY ROBOT[/wave][/b]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="button_down" from="Start" to="." method="_on_start_button_down"]
+[connection signal="button_down" from="Quit" to="." method="_on_quit_button_down"]
