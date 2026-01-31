@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca7sw5c5l8mmu"]
+[gd_scene load_steps=4 format=3 uid="uid://cq7o0nkfm356e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uojun"]
 
@@ -66,7 +66,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[font sln=-0.1]Made by: 
 [ul]Crocdent
-Orderas
+pierrelaz
 AutoParanoid[/ul][/font]"
 vertical_alignment = 1
 
