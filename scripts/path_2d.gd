@@ -1,6 +1,6 @@
 extends Path2D
 
-const BASE_INV_SPEED = 6
+const BASE_INV_SPEED = 5
 
 var inverse_speed = BASE_INV_SPEED
 var t = 0.0

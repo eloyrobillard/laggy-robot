@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var BASE_INV_SPEED = 5
+var BASE_INV_SPEED = 20
 
 var inverse_speed = BASE_INV_SPEED
 
