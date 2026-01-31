@@ -1,19 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cx653q3t8v0vi"]
+[gd_scene load_steps=5 format=3 uid="uid://cx653q3t8v0vi"]
 
 [ext_resource type="Script" uid="uid://dw5lq5me6hx48" path="res://scripts/box.gd" id="1_3inec"]
+[ext_resource type="Texture2D" uid="uid://cckh8xmrr4hfc" path="res://assets/Box_poussable.png" id="2_ks2v0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3inec"]
 friction = 0.1
 bounce = 0.2
-
-[sub_resource type="Gradient" id="Gradient_on5l8"]
-offsets = PackedFloat32Array(0.52)
-colors = PackedColorArray(0.52, 0.52, 0.52, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3inec"]
-gradient = SubResource("Gradient_on5l8")
-width = 384
-height = 384
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks2v0"]
 size = Vector2(384, 384)
@@ -27,7 +19,7 @@ max_contacts_reported = 10
 script = ExtResource("1_3inec")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = SubResource("GradientTexture2D_3inec")
+texture = ExtResource("2_ks2v0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ks2v0")
