@@ -212,6 +212,7 @@ frame_progress = 0.20673436
 offset = Vector2(-100, 0)
 
 [node name="UltraInstinctLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("8_y2iih")
 
 [node name="UltraInstinctTint" type="TextureRect" parent="UltraInstinctLayer"]
@@ -247,6 +248,7 @@ step = 1.0
 value = 100.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("9_3atht")
 
 [node name="ElapsedTime" type="Label" parent="HUD"]
@@ -281,6 +283,7 @@ theme_override_font_sizes/font_size = 256
 text = "VICTORY"
 
 [node name="DebugLayer" parent="." node_paths=PackedStringArray("node") instance=ExtResource("12_40tyl")]
+visible = false
 node = NodePath("../Player")
 
 [node name="MovingPlatform" parent="." instance=ExtResource("13_5brqo")]
