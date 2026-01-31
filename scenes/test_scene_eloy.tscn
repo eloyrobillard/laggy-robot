@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 [ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
 [ext_resource type="PackedScene" uid="uid://c22bcn6g4r8ca" path="res://scenes/death_menu.tscn" id="29_avimm"]
+[ext_resource type="Texture2D" uid="uid://bgkn3xacir3nr" path="res://assets/background.png" id="29_ilgam"]
 [ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
 [ext_resource type="PackedScene" uid="uid://buhdl02ckpug5" path="res://scenes/lava_pool.tscn" id="30_avimm"]
 
@@ -319,6 +320,11 @@ position = Vector2(7304, -844)
 scale = Vector2(1.4, 0.68)
 
 [node name="DeathMenu" parent="." instance=ExtResource("29_avimm")]
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(5849, -765)
+texture = ExtResource("29_ilgam")
 
 [connection signal="died" from="Player" to="Path2D" method="_on_player_died"]
 [connection signal="died" from="Player" to="DeathMenu" method="_on_player_died"]
