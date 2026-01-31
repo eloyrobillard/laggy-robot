@@ -168,7 +168,7 @@ tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQ
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
-position = Vector2(5814, -1250)
+position = Vector2(5043, -2506)
 
 [node name="Sprite2D" type="Sprite2D" parent="Exit"]
 position = Vector2(0, -22)

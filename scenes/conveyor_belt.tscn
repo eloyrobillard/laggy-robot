@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://q6871l13ss6m"]
+[gd_scene load_steps=13 format=3 uid="uid://q6871l13ss6m"]
 
 [ext_resource type="Script" uid="uid://bokjt47usnxpn" path="res://scripts/conveyor_belt.gd" id="1_65uwv"]
 [ext_resource type="Texture2D" uid="uid://u0yn8w7xmf82" path="res://assets/gear/gear_1.png" id="2_it644"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dppqpmkmvajy2" path="res://assets/gear/gear_4.png" id="5_g4y7j"]
 [ext_resource type="Texture2D" uid="uid://dgl3fey7toqql" path="res://assets/gear/clutch.png" id="6_pim3x"]
 [ext_resource type="Script" uid="uid://dqnkny4sscyyu" path="res://scripts/path_follow_2d.gd" id="7_g4y7j"]
+[ext_resource type="Texture2D" uid="uid://bbkdbrye6fd8c" path="res://assets/conveyor_belt.png" id="8_g4y7j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n2of"]
 radius = 110.0
@@ -298,3 +299,14 @@ script = ExtResource("7_g4y7j")
 position = Vector2(-13.728134, 78.838684)
 scale = Vector2(0.7618396, 0.76183957)
 texture = ExtResource("6_pim3x")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(328, 8)
+scale = Vector2(1.0179813, 1.0179813)
+constant_linear_velocity = Vector2(-600, 0)
+
+[node name="ConveyorBelt" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("8_g4y7j")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-330.5, -133, -330.5, -131.8, -346.8, -129, -351.9, -129, -371.9, -120, -375.1, -120, -391, -109, -393.3, -109, -411.4, -92, -412.5, -92, -428.5, -69, -429.8, -69, -435.8, -55, -437, -55, -442, -37, -443.3, -37, -445.3, -16, -446.6, -16, -445.5, 2.100006, -445.5, 11.300003, -441.5, 26, -441.5, 30.5, -430.5, 53.399994, -430.5, 55.699997, -419.5, 69.600006, -419.5, 71.8, -405.5, 85.8, -405.5, 87, -387.5, 100, -387.5, 101.3, -362.5, 112.20001, -362.5, 113.600006, -339.5, 118.600006, -339.5, 120, 321.8, 120, 358.90002, 107, 361.09998, 107, 375.09998, 97, 377.3, 97, 394.40002, 81, 395.5, 81, 412.5, 57, 413.90002, 57, 417.90002, 47, 419, 47, 426, 24, 427.3, 24, 429.3, 4, 430.59998, 4, 429.5, -13.100006, 429.5, -23.300003, 425.5, -37, 425.5, -41.4, 416.5, -61.4, 416.5, -63.699997, 402.5, -82.7, 402.5, -84.9, 384.5, -102, 384.5, -103.1, 362.5, -117.2, 362.5, -118.4, 337.5, -127.5, 337.5, -128.7, 323.5, -130.8, 323.5, -132)
