@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -28,14 +28,42 @@
 [ext_resource type="Texture2D" uid="uid://qx8xxpg67h80" path="res://assets/netflix 1920/color stripes09.png" id="17_5y2ht"]
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 [ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
+[ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
 scenes/1/scene = ExtResource("2_4yv2b")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oh5pa"]
+texture = ExtResource("29_oh5pa")
+texture_region_size = Vector2i(256, 256)
+0:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0ojeu"]
 tile_layout = 4
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetScenesCollectionSource_ylc0x")
+sources/2 = SubResource("TileSetAtlasSource_oh5pa")
 
 [sub_resource type="Gradient" id="Gradient_4yv2b"]
 offsets = PackedFloat32Array(0.61, 1)
@@ -116,7 +144,7 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(6064, -1248)
+position = Vector2(9872, -1312)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
@@ -125,7 +153,7 @@ position_smoothing_enabled = true
 script = ExtResource("3_egwr4")
 BASE_ZOOM = 0.5
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(1800, -760)
 tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQAQAP//AAAAAAAAAQARAP//AAAAAAAAAQAfAP//AAAAAAAAAQAgAP//AAAAAAAAAQAjAP//AAAAAAAAAQAkAP//AAAAAAAAAQAlAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
@@ -292,7 +320,7 @@ start_direction_x = 1
 start_direction_y = 1
 
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
-position = Vector2(10572, -1261)
+position = Vector2(10572, -1488)
 time_to_bottom = 0.5
 pause_bottom = 0.2
 transition_down = 2
