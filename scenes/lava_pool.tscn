@@ -1,0 +1,117 @@
+[gd_scene load_steps=12 format=4 uid="uid://buhdl02ckpug5"]
+
+[ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="1_07b0g"]
+[ext_resource type="Script" uid="uid://b1o8hf4doly8d" path="res://scripts/lava_pool.gd" id="1_7o31b"]
+[ext_resource type="Texture2D" uid="uid://dwbqt3osip0aw" path="res://assets/laval-foam/lava_1.png" id="2_374ft"]
+[ext_resource type="Texture2D" uid="uid://daq67mcwucg16" path="res://assets/laval-foam/lava_2.png" id="3_7o31b"]
+[ext_resource type="Texture2D" uid="uid://cfvi5t750lppp" path="res://assets/laval-foam/laval-3.png" id="4_hitf4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1t3q"]
+texture = ExtResource("1_07b0g")
+texture_region_size = Vector2i(256, 256)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_xlvhi"]
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(256, 256)
+sources/0 = SubResource("TileSetAtlasSource_g1t3q")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rtpg3"]
+texture = ExtResource("1_07b0g")
+texture_region_size = Vector2i(256, 256)
+1:0/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 66.25638, -3.8974304, 5.8461456, 128, 2.9230652, 128, 128, -128, 128)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 2.9230652, 128, 2.9230652, 128, 128, -128, 128)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 5.8461456, -3.8974304, 5.8461456, 128, 69.179474, 128, 128, -128, 128)
+1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, -5.8461456, -128, -4.8717957, 128, -128, 128)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.8974304, -128, 128, -128, 128, 128, 4.8717957, 128)
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_i7te5"]
+tile_size = Vector2i(256, 256)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 13
+sources/0 = SubResource("TileSetAtlasSource_rtpg3")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vg1n4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_374ft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7o31b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hitf4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_374ft"]
+size = Vector2(776, 67)
+
+[node name="LavaPool" type="Node2D"]
+script = ExtResource("1_7o31b")
+
+[node name="Lava" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAD+////AAAAAAMAAAD+/wAAAAAAAAQAAAD/////AAAAAAMAAAD//wAAAAAAAAQAAAAAAP//AAAAAAMAAAAAAAAAAAAAAAQAAAABAP//AAAAAAMAAAABAAAAAAAAAAQAAAA=")
+tile_set = SubResource("TileSet_xlvhi")
+
+[node name="PoolWalls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wEAAAADAAAAADD+/wEAAAAEAAAAADABAAEAAAACAAAAADAAAAEAAAADAAAAADD+/wAAAAADAAIAAAD+////AAADAAIAAAABAAAAAAAEAAIAAAABAP//AAAEAAIAAAA=")
+tile_set = SubResource("TileSet_i7te5")
+
+[node name="Foam" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.7404556e-05, -368)
+scale = Vector2(3.03125, 1)
+sprite_frames = SubResource("SpriteFrames_vg1n4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 23.5)
+shape = SubResource("RectangleShape2D_374ft")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
