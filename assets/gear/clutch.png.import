@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kaudachadwgu"
-path="res://.godot/imported/gear_2.png-aaab2e22e437ee9f631632826e430c0c.ctex"
+uid="uid://dgl3fey7toqql"
+path="res://.godot/imported/clutch.png-24df7149731c77fd776180c1086c5b56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gear/gear_2.png"
-dest_files=["res://.godot/imported/gear_2.png-aaab2e22e437ee9f631632826e430c0c.ctex"]
+source_file="res://assets/gear/clutch.png"
+dest_files=["res://.godot/imported/clutch.png-24df7149731c77fd776180c1086c5b56.ctex"]
 
 [params]
 
