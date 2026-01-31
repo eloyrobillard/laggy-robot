@@ -1,12 +1,11 @@
-[gd_scene load_steps=42 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=38 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
-[ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
 [ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" uid="uid://fg5omipajrkd" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
-[ext_resource type="Script" uid="uid://dqnkny4sscyyu" path="res://scripts/path_follow_2d.gd" id="6_oh5pa"]
+[ext_resource type="Script" uid="uid://ddqpogvj5s8mv" path="res://scripts/demon.gd" id="6_oh5pa"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
 [ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
 [ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
@@ -25,13 +24,11 @@
 [ext_resource type="Texture2D" uid="uid://qx8xxpg67h80" path="res://assets/netflix 1920/color stripes09.png" id="17_5y2ht"]
 [ext_resource type="Texture2D" uid="uid://cbd02kya1j8eg" path="res://assets/netflix 1920/color stripes10.png" id="18_6m3wp"]
 [ext_resource type="PackedScene" uid="uid://cx653q3t8v0vi" path="res://scenes/box.tscn" id="28_7a8fm"]
+[ext_resource type="PackedScene" uid="uid://clgmwj85051jw" path="res://scenes/exit.tscn" id="29_0dj57"]
 [ext_resource type="PackedScene" uid="uid://c22bcn6g4r8ca" path="res://scenes/death_menu.tscn" id="29_avimm"]
 [ext_resource type="Texture2D" uid="uid://bgkn3xacir3nr" path="res://assets/background.png" id="29_ilgam"]
 [ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
 [ext_resource type="PackedScene" uid="uid://buhdl02ckpug5" path="res://scenes/lava_pool.tscn" id="30_avimm"]
-
-[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ylc0x"]
-scenes/1/scene = ExtResource("2_4yv2b")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oh5pa"]
 texture = ExtResource("29_oh5pa")
@@ -72,23 +69,7 @@ tile_layout = 4
 tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 13
-sources/0 = SubResource("TileSetScenesCollectionSource_ylc0x")
 sources/2 = SubResource("TileSetAtlasSource_oh5pa")
-
-[sub_resource type="Gradient" id="Gradient_4yv2b"]
-offsets = PackedFloat32Array(0.61, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ylc0x"]
-gradient = SubResource("Gradient_4yv2b")
-width = 512
-height = 512
-fill = 1
-fill_from = Vector2(0.49766356, 0)
-fill_to = Vector2(0.5140187, 1)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4yv2b"]
-size = Vector2(511, 275.5)
 
 [sub_resource type="Curve2D" id="Curve2D_6b8dj"]
 _data = {
@@ -154,7 +135,7 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(1184, -728)
+position = Vector2(1406, -753)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
@@ -165,27 +146,8 @@ BASE_ZOOM = 0.5
 
 [node name="Platforms" type="TileMapLayer" parent="."]
 position = Vector2(1800, -760)
-tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQAAAAFAP//AgAEAAQAAAAGAP//AgAEAAQAAAAHAP//AgAEAAQAAAAIAP//AgAEAAQAAAD7/wEAAgAEAAQAAAD8/wEAAgAEAAQAAAD9/wEAAgAEAAQAAAD+/wEAAgAEAAQAAAD//wEAAgAEAAQAAAAAAAEAAgAEAAQAAAABAAEAAgABAAQAAAABAAAAAgACAAMAAAANAP//AgAEAAQAAAAOAP//AgAEAAQAAAAPAP//AgAEAAQAAAAQAP//AgAEAAQAAAARAP//AgAEAAQAAAASAP//AgAEAAQAAAAYAP//AgAEAAQAAAAEAAAAAgABAAQAAAA=")
+tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQAAAAFAP//AgAEAAQAAAAGAP//AgAEAAQAAAAHAP//AgAEAAQAAAAIAP//AgAEAAQAAAD7/wEAAgAEAAQAAAD8/wEAAgAEAAQAAAD9/wEAAgAEAAQAAAD+/wEAAgAEAAQAAAD//wEAAgAEAAQAAAAAAAEAAgAEAAQAAAABAAEAAgABAAQAAAABAAAAAgACAAMAAAANAP//AgAEAAQAAAAOAP//AgAEAAQAAAAPAP//AgAEAAQAAAAQAP//AgAEAAQAAAARAP//AgAEAAQAAAASAP//AgAEAAQAAAAYAP//AgAEAAQAAAAEAAAAAgABAAQAAAAmAAAAAgACAAMAAAAnAAAAAgABAAQAAAAnAP//AgACAAMAAAAoAP//AgAEAAQAAAApAP//AgAEAAQAAAAqAP//AgAEAAQAAAArAP//AgAEAAQAAAAsAP7/AgAEAAMAAAAsAP3/AgAEAAMAAAAsAPz/AgAEAAMAAAAsAPv/AgAEAAMAAAAsAPr/AgAEAAMAAAAsAP//AgAEAAQAAAA=")
 tile_set = SubResource("TileSet_0ojeu")
-
-[node name="Exit" type="Area2D" parent="."]
-position = Vector2(5043, -2506)
-
-[node name="Sprite2D" type="Sprite2D" parent="Exit"]
-position = Vector2(0, -22)
-texture = SubResource("GradientTexture2D_ylc0x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
-position = Vector2(0.5, 95.25)
-shape = SubResource("RectangleShape2D_4yv2b")
-
-[node name="Exit" type="Label" parent="Exit"]
-offset_left = -128.0
-offset_top = -278.0
-offset_right = 100.0
-offset_bottom = -103.0
-theme_override_font_sizes/font_size = 128
-text = "Exit"
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6b8dj")
@@ -299,7 +261,8 @@ start_direction_x = 1
 start_direction_y = 1
 
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
-position = Vector2(10572, -1488)
+position = Vector2(10572, -1697)
+scale = Vector2(1.3068864, 1.3068864)
 time_to_bottom = 0.5
 pause_bottom = 0.2
 transition_down = 2
@@ -319,7 +282,7 @@ scale = Vector2(3, 3)
 position = Vector2(5961, -2381)
 
 [node name="LavaPool" parent="." instance=ExtResource("30_avimm")]
-position = Vector2(7304, -844)
+position = Vector2(7304, -842.99994)
 scale = Vector2(1.4, 0.68)
 
 [node name="DeathMenu" parent="." instance=ExtResource("29_avimm")]
@@ -328,6 +291,10 @@ scale = Vector2(1.4, 0.68)
 z_index = -4096
 position = Vector2(5849, -765)
 texture = ExtResource("29_ilgam")
+
+[node name="Exit" parent="." instance=ExtResource("29_0dj57")]
+position = Vector2(12552, -1145)
+scale = Vector2(1.2895819, 1.2895819)
 
 [connection signal="died" from="Player" to="Path2D/PathFollow2D" method="_on_player_died"]
 [connection signal="died" from="Player" to="DeathMenu" method="_on_player_died"]
@@ -339,7 +306,6 @@ texture = ExtResource("29_ilgam")
 [connection signal="left_ultra_instrinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="won" from="Player" to="Path2D/PathFollow2D" method="_on_player_won"]
 [connection signal="won" from="Player" to="VictoryLayer" method="_on_player_won"]
-[connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
 [connection signal="go_back_to_main_menu" from="VictoryLayer" to="." method="_on_victory_layer_go_back_to_main_menu"]
@@ -347,3 +313,4 @@ texture = ExtResource("29_ilgam")
 [connection signal="split_player_in_half" from="RotarySaw" to="Player" method="_on_rotary_saw_split_player_in_half"]
 [connection signal="player_fell_in" from="LavaPool" to="Player" method="_on_lava_pool_player_fell_in"]
 [connection signal="restart_level" from="DeathMenu" to="." method="_on_death_menu_restart_level"]
+[connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
