@@ -41,6 +41,17 @@ func _input(event: InputEvent) -> void:
 				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
 				animated_sprite_2d.play("jump-up")
 
+			var direction := Input.get_axis("left", "right")
+			if direction:
+				velocity.x = direction * SPEED
+
+				if direction < 0:
+					animated_sprite_2d.flip_h = true
+				else:
+					animated_sprite_2d.flip_h = false
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+
 
 func _physics_process(delta: float) -> void:
 	if playingRecord:
@@ -50,22 +61,11 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("left", "right")
-	if direction:
-		velocity.x = direction * SPEED / ultra_instinct_factor
-
-		if direction < 0:
-			animated_sprite_2d.flip_h = true
-		else:
-			animated_sprite_2d.flip_h = false
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
 
 	# animations
 	if velocity.y == 0:
-		if velocity.x == 0:
+		if direction == 0:
 			animated_sprite_2d.play("idle")
 		else:
 			animated_sprite_2d.play("run")
@@ -75,15 +75,20 @@ func _physics_process(delta: float) -> void:
 			animated_sprite_2d.play("jump-down")
 
 	move_and_slide()
-	check_box()
+	if check_box():
+		velocity.x = direction * SPEED
 
 
 func check_box():
+	var collided_with_box = false
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider.is_in_group("box"):
 			collider.apply_impulse(-collision.get_normal() * 1000)
+			collided_with_box = true
+
+	return collided_with_box
 
 
 func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
