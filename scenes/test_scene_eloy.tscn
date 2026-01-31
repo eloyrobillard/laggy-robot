@@ -3,15 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
 [ext_resource type="PackedScene" uid="uid://bqd84onn4ljx6" path="res://scenes/basic_platform.tscn" id="2_4yv2b"]
-[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="3_egwr4"]
+[ext_resource type="Script" uid="uid://dxdr4vkvtrrrk" path="res://scripts/camera_2d.gd" id="3_egwr4"]
 [ext_resource type="Script" path="res://scripts/you_win.gd" id="3_ylc0x"]
 [ext_resource type="AudioStream" uid="uid://dryqit84wko4y" path="res://assets/sfx/you-died-dark-souls.mp3" id="4_6b8dj"]
 [ext_resource type="PackedScene" uid="uid://q6871l13ss6m" path="res://scenes/conveyor_belt.tscn" id="4_uuc2l"]
 [ext_resource type="Script" path="res://scripts/you_died.gd" id="5_2bbt6"]
 [ext_resource type="Script" uid="uid://ycilsyhw4fjt" path="res://scripts/path_2d.gd" id="5_2pyty"]
 [ext_resource type="Texture2D" uid="uid://d1d5j5i7y1bld" path="res://assets/netflix 1920/color stripes00.png" id="8_c6s3x"]
-[ext_resource type="Script" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
-[ext_resource type="Script" path="res://scripts/hud.gd" id="9_3atht"]
+[ext_resource type="Script" uid="uid://behuc7jo3mxka" path="res://scripts/ultra_instinct_layer.gd" id="8_y2iih"]
+[ext_resource type="Script" uid="uid://by3verg42fbo8" path="res://scripts/hud.gd" id="9_3atht"]
 [ext_resource type="Texture2D" uid="uid://d2l1t8oehrx3w" path="res://assets/netflix 1920/color stripes01.png" id="9_7a8fm"]
 [ext_resource type="AudioStream" uid="uid://cbiflwtwr2wii" path="res://assets/sfx/final-fantasy-vii-victory-fanfare-1.mp3" id="10_beqnb"]
 [ext_resource type="Texture2D" uid="uid://dovklkwe18tt" path="res://assets/netflix 1920/color stripes02.png" id="10_oh5pa"]
@@ -116,7 +116,7 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 script = ExtResource("1_2pyty")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(1353, -717)
+position = Vector2(6064, -1248)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
@@ -126,8 +126,8 @@ script = ExtResource("3_egwr4")
 BASE_ZOOM = 0.5
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(1808, -760)
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQAQAP//AAAAAAAAAQAaAP//AAAAAAAAAQAeAP//AAAAAAAAAQARAP//AAAAAAAAAQA=")
+position = Vector2(1800, -760)
+tile_map_data = PackedByteArray("AAD+/wEAAAAAAAAAAQD//wEAAAAAAAAAAQAAAAEAAAAAAAAAAQABAAEAAAAAAAAAAQACAAAAAAAAAAAAAQADAAAAAAAAAAAAAQAEAP//AAAAAAAAAQAFAP//AAAAAAAAAQAGAP//AAAAAAAAAQAHAP//AAAAAAAAAQAIAP//AAAAAAAAAQD8/wEAAAAAAAAAAQD9/wEAAAAAAAAAAQD7/wEAAAAAAAAAAQANAP//AAAAAAAAAQAOAP//AAAAAAAAAQAPAP//AAAAAAAAAQAQAP//AAAAAAAAAQARAP//AAAAAAAAAQAfAP//AAAAAAAAAQAgAP//AAAAAAAAAQAjAP//AAAAAAAAAQAkAP//AAAAAAAAAQAlAP//AAAAAAAAAQA=")
 tile_set = SubResource("TileSet_0ojeu")
 
 [node name="Exit" type="Area2D" parent="."]
@@ -292,7 +292,7 @@ start_direction_x = 1
 start_direction_y = 1
 
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
-position = Vector2(9104, -1261)
+position = Vector2(10572, -1261)
 time_to_bottom = 0.5
 pause_bottom = 0.2
 transition_down = 2
@@ -310,6 +310,7 @@ scale = Vector2(3, 3)
 
 [node name="Box" parent="." instance=ExtResource("28_7a8fm")]
 position = Vector2(5961, -2381)
+mass = 100.0
 
 [connection signal="died" from="Player" to="YouDiedLayer" method="_on_player_died"]
 [connection signal="died" from="Player" to="Path2D" method="_on_player_died"]

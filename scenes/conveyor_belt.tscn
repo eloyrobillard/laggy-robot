@@ -1,55 +1,17 @@
-[gd_scene load_steps=15 format=3 uid="uid://q6871l13ss6m"]
+[gd_scene load_steps=12 format=3 uid="uid://q6871l13ss6m"]
 
 [ext_resource type="Script" uid="uid://bokjt47usnxpn" path="res://scripts/conveyor_belt.gd" id="1_65uwv"]
-[ext_resource type="Texture2D" uid="uid://7df7ce5x4sol" path="res://assets/gear/gear_1.png" id="2_it644"]
-[ext_resource type="Texture2D" uid="uid://oht5fir1axwa" path="res://assets/gear/gear_2.png" id="3_pim3x"]
-[ext_resource type="Texture2D" uid="uid://daqiwailhh722" path="res://assets/gear/gear_3.png" id="4_nlha8"]
-[ext_resource type="Texture2D" uid="uid://bvy7aj6qjbjyh" path="res://assets/gear/gear_4.png" id="5_g4y7j"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_444fa"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_it644")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_pim3x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_nlha8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_g4y7j")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
+[ext_resource type="Texture2D" uid="uid://u0yn8w7xmf82" path="res://assets/gear/gear_1.png" id="2_it644"]
+[ext_resource type="Texture2D" uid="uid://kaudachadwgu" path="res://assets/gear/gear_2.png" id="3_pim3x"]
+[ext_resource type="Texture2D" uid="uid://cgarx1m7lwhwd" path="res://assets/gear/gear_3.png" id="4_nlha8"]
+[ext_resource type="Texture2D" uid="uid://dppqpmkmvajy2" path="res://assets/gear/gear_4.png" id="5_g4y7j"]
+[ext_resource type="Texture2D" uid="uid://dgl3fey7toqql" path="res://assets/gear/clutch.png" id="6_pim3x"]
+[ext_resource type="Script" uid="uid://dqnkny4sscyyu" path="res://scripts/path_follow_2d.gd" id="7_g4y7j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4n2of"]
 radius = 110.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_pim3x"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_it644")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_pim3x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_nlha8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_g4y7j")
-}],
-"loop": true,
-"name": &"default",
-"speed": 15.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_it644"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_444fa"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -72,24 +34,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_65uwv"]
 radius = 110.0
 
-[sub_resource type="Gradient" id="Gradient_4dsgs"]
-offsets = PackedFloat32Array(0.76666665, 1)
-colors = PackedColorArray(0.32941177, 0.0627451, 0.0627451, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_03uyg"]
-gradient = SubResource("Gradient_4dsgs")
-height = 14
-fill = 2
-fill_from = Vector2(0.50233644, 0.64719623)
-fill_to = Vector2(0.48831776, 0)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_4n2of"]
-a = Vector2(11, 0)
-b = Vector2(330, 0)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_65uwv"]
-a = Vector2(-1.7484581e-07, -2)
-b = Vector2(-319, -1.9999733)
+[sub_resource type="Curve2D" id="Curve2D_it644"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 15, -109, 0, 0, 0, 0, -16, -109, 0, 0, 0, 0, -35, -104, 0, 0, 0, 0, -51, -97, 0, 0, 0, 0, -64, -89, 0, 0, 0, 0, -79, -80, 0, 0, 0, 0, -90, -65, 0, 0, 0, 0, -98, -51, 0, 0, 0, 0, -103, -38, 0, 0, 0, 0, -108, -25, 0, 0, 0, 0, -110, -11, 0, 0, 0, 0, -110, 3, 0, 0, 0, 0, -108, 16, 0, 0, 0, 0, -107, 27, 0, 0, 0, 0, -103, 36, 0, 0, 0, 0, -100, 45, 0, 0, 0, 0, -95, 55, 0, 0, 0, 0, -89, 63, 0, 0, 0, 0, -80, 73, 0, 0, 0, 0, -73, 81, 0, 0, 0, 0, -65, 87, 0, 0, 0, 0, -56, 94, 0, 0, 0, 0, -46, 99, 0, 0, 0, 0, -36, 104, 0, 0, 0, 0, -28, 107, 0, 0, 0, 0, -19, 108, 0, 0, 0, 0, -7, 109, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 7, 110, 0, 0, 0, 0, 634, 110, 0, 0, 0, 0, 644, 110, 0, 0, 0, 0, 654, 109, 0, 0, 0, 0, 664, 107, 0, 0, 0, 0, 674, 105, 0, 0, 0, 0, 683, 101, 0, 0, 0, 0, 689, 98, 0, 0, 0, 0, 695, 96, 0, 0, 0, 0, 700, 92, 0, 0, 0, 0, 707, 87, 0, 0, 0, 0, 711, 83, 0, 0, 0, 0, 718, 75, 0, 0, 0, 0, 724, 69, 0, 0, 0, 0, 730, 61, 0, 0, 0, 0, 737, 53, 0, 0, 0, 0, 741, 42, 0, 0, 0, 0, 744, 34, 0, 0, 0, 0, 747, 27, 0, 0, 0, 0, 749, 17, 0, 0, 0, 0, 750, 10, 0, 0, 0, 0, 751, -2, 0, 0, 0, 0, 751, -15, 0, 0, 0, 0, 746, -31, 0, 0, 0, 0, 741, -42, 0, 0, 0, 0, 736, -52, 0, 0, 0, 0, 732, -61, 0, 0, 0, 0, 725, -70, 0, 0, 0, 0, 714, -84, 0, 0, 0, 0, 698, -95, 0, 0, 0, 0, 685, -100, 0, 0, 0, 0, 676, -104, 0, 0, 0, 0, 666, -106, 0, 0, 0, 0, 655, -108, 0, 0, 0, 0, 645, -109, 0, 0, 0, 0, 631, -109, 0, 0, 0, 0, 15, -109)
+}
+point_count = 65
 
 [node name="ConveyorBelt" type="Node2D"]
 script = ExtResource("1_65uwv")
@@ -97,57 +46,255 @@ script = ExtResource("1_65uwv")
 [node name="WheelLeft" type="StaticBody2D" parent="."]
 constant_angular_velocity = -1.5707964
 
-[node name="WheelLeft" type="AnimatedSprite2D" parent="WheelLeft"]
-sprite_frames = SubResource("SpriteFrames_444fa")
-autoplay = "default"
-frame_progress = 0.9052367
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelLeft"]
 shape = SubResource("CircleShape2D_4n2of")
 
+[node name="WheelLeft" type="AnimatedSprite2D" parent="WheelLeft"]
+sprite_frames = SubResource("SpriteFrames_444fa")
+autoplay = "default"
+frame_progress = 0.51694673
+
 [node name="WheelMiddle" type="AnimatedSprite2D" parent="."]
 position = Vector2(320, 0)
-sprite_frames = SubResource("SpriteFrames_pim3x")
+sprite_frames = SubResource("SpriteFrames_444fa")
 autoplay = "default"
-frame_progress = 0.5146602
+frame_progress = 0.49350086
 
 [node name="WheelRight" type="StaticBody2D" parent="."]
 position = Vector2(640, 0)
 constant_angular_velocity = 1.5707964
 
-[node name="WheelRight" type="AnimatedSprite2D" parent="WheelRight"]
-sprite_frames = SubResource("SpriteFrames_it644")
-autoplay = "default"
-frame_progress = 0.0216403
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WheelRight"]
 shape = SubResource("CircleShape2D_65uwv")
 
-[node name="TopMat" type="StaticBody2D" parent="."]
-constant_linear_velocity = Vector2(-600, 0)
+[node name="WheelRight" type="AnimatedSprite2D" parent="WheelRight"]
+sprite_frames = SubResource("SpriteFrames_444fa")
+autoplay = "default"
+frame_progress = 0.583294
 
-[node name="TopMat" type="Sprite2D" parent="TopMat"]
-position = Vector2(159.99998, -58)
-scale = Vector2(4.984375, 1)
-texture = SubResource("GradientTexture2D_03uyg")
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_it644")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TopMat"]
-position = Vector2(-11, -63)
-shape = SubResource("SegmentShape2D_4n2of")
-one_way_collision = true
-one_way_collision_margin = 3.5
-
-[node name="BottomMat" type="StaticBody2D" parent="."]
-constant_linear_velocity = Vector2(600, 0)
-
-[node name="BottomMat" type="Sprite2D" parent="BottomMat"]
-position = Vector2(159.50002, 58)
-scale = Vector2(4.984375, 1)
-texture = SubResource("GradientTexture2D_03uyg")
-flip_v = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMat"]
-position = Vector2(0, 61)
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-13.931791, -109.052826)
 rotation = 3.1415927
-shape = SubResource("SegmentShape2D_65uwv")
-one_way_collision = true
+progress = 28.798187
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-94.44075, -57.228687)
+rotation = 2.0899425
+progress = 128.40836
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D2"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-105.24993, 30.946198)
+rotation = 1.1916177
+progress = 220.1286
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D3"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
+position = Vector2(48.612762, 110)
+progress = 409.48654
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D4"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Path2D"]
+position = Vector2(143.29932, 110)
+progress = 504.16553
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D5"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Path2D"]
+position = Vector2(235.01895, 110)
+progress = 595.88574
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D6"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Path2D"]
+position = Vector2(333.64438, 110)
+progress = 694.5097
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D7"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Path2D"]
+position = Vector2(431.2832, 110)
+progress = 792.1474
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D8"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D9" type="PathFollow2D" parent="Path2D"]
+position = Vector2(527.9348, 110.00001)
+progress = 888.7988
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D9"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D10" type="PathFollow2D" parent="Path2D"]
+position = Vector2(622.63525, 110)
+progress = 983.4778
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D10"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D11" type="PathFollow2D" parent="Path2D"]
+position = Vector2(706.3207, 87.523674)
+rotation = -0.6202495
+progress = 1072.2394
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D11"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D12" type="PathFollow2D" parent="Path2D"]
+position = Vector2(747.5021, 24.489838)
+rotation = -1.3734008
+progress = 1149.166
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D12"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D13" type="PathFollow2D" parent="Path2D"]
+position = Vector2(733.4739, -57.708843)
+rotation = -1.9890206
+progress = 1234.9688
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D13"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D14" type="PathFollow2D" parent="Path2D"]
+position = Vector2(679.6986, -102.36079)
+rotation = -2.7233684
+progress = 1306.9642
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D14"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D15" type="PathFollow2D" parent="Path2D"]
+position = Vector2(600.64166, -109)
+rotation = 3.1415927
+progress = 1386.8497
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D15"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D16" type="PathFollow2D" parent="Path2D"]
+position = Vector2(499.04874, -109)
+rotation = 3.1415927
+progress = 1488.4323
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D16"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D17" type="PathFollow2D" parent="Path2D"]
+position = Vector2(401.4088, -109.00001)
+rotation = 3.1415927
+progress = 1586.07
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D17"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D18" type="PathFollow2D" parent="Path2D"]
+position = Vector2(300.81198, -109)
+rotation = 3.1415927
+progress = 1686.6664
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D18"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D19" type="PathFollow2D" parent="Path2D"]
+position = Vector2(194.29639, -109)
+rotation = 3.1415927
+progress = 1793.1802
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D19"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D20" type="PathFollow2D" parent="Path2D"]
+position = Vector2(88.75585, -109)
+rotation = 3.1415927
+progress = 1898.7078
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D20"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
+
+[node name="PathFollow2D21" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-53.31833, 95.340836)
+rotation = 0.4636476
+progress = 304.94516
+script = ExtResource("7_g4y7j")
+
+[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D21"]
+position = Vector2(-13.728134, 78.838684)
+scale = Vector2(0.7618396, 0.76183957)
+texture = ExtResource("6_pim3x")
