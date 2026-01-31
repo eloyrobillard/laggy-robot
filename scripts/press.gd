@@ -14,7 +14,7 @@ signal hit_player
 @export var ease_up: Tween.EaseType
 
 var y_tween: Tween
-var size_shaft_px = 640
+var size_shaft_px = 560
 
 
 # Called when the node enters the scene tree for the first time.
