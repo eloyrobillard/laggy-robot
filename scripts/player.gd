@@ -33,35 +33,23 @@ func _input(event: InputEvent) -> void:
 				else:
 					enter_ultra_instinct()
 
-			# Handle jump.
-			if (Input.is_action_just_pressed("jump")
-				and is_on_floor()
-				and not recorder.isRecording
-				and not playingRecord ):
-				velocity.y = JUMP_VELOCITY / ultra_instinct_factor
-				animated_sprite_2d.play("jump-up")
-
-			var direction := Input.get_axis("left", "right")
-			if direction:
-				velocity.x = direction * SPEED
-
-				if direction < 0:
-					animated_sprite_2d.flip_h = true
-				else:
-					animated_sprite_2d.flip_h = false
-			else:
-				velocity.x = move_toward(velocity.x, 0, SPEED)
+			if in_ultra_instinct_mode:
+				return
 
 
 func _physics_process(delta: float) -> void:
+	var direction = 0
 	if playingRecord:
-		PlaybackMove()
+		direction = PlaybackMove()
 
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta / ultra_instinct_factor ** 2
 
-	var direction := Input.get_axis("left", "right")
+	if direction < 0:
+		animated_sprite_2d.flip_h = true
+	else:
+		animated_sprite_2d.flip_h = false
 
 	# animations
 	if velocity.y == 0:
@@ -170,11 +158,17 @@ func PlaybackMove():
 
 	if dir:
 		velocity.x = dir * SPEED / ultra_instinct_factor
+		if dir > 0:
+			animated_sprite_2d.flip_h = false
+		else:
+			animated_sprite_2d.flip_h = true
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED / ultra_instinct_factor)
 
 	if playbackIndex >= inputs.size():
 		EndPlayback()
+
+	return dir
 
 
 func EndPlayback():
