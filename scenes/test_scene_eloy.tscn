@@ -285,8 +285,8 @@ scale = Vector2(3, 3)
 position = Vector2(5961, -2381)
 
 [node name="LavaPool" parent="." instance=ExtResource("30_avimm")]
-position = Vector2(7304, -842.99994)
-scale = Vector2(1.4, 0.68)
+position = Vector2(7296.0005, -842.99994)
+scale = Vector2(1.24, 0.60228574)
 
 [node name="DeathMenu" parent="." instance=ExtResource("29_avimm")]
 
