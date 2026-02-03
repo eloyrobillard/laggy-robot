@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 	if in_ultra_instinct_mode:
 		global_position.x = invisible_player.global_position.x
 	else:
-		global_position.x = lerpf(global_position.x, player.global_position.x, delta)
+		global_position.x = lerpf(global_position.x, player.global_position.x, delta * 5)
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
