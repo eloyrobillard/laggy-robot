@@ -12,7 +12,7 @@ func _ready() -> void:
 		var clutch = path_follow_2d.duplicate()
 		add_child(clutch)
 		clutch.progress_ratio = i * inv
-		print(clutch.progress_ratio)
+		
 	path_follow_2d.free()
 
 
