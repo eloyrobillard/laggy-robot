@@ -105,7 +105,8 @@ func leave_ultra_instinct() -> void:
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	die()
+	if not in_ultra_instinct_mode:
+		die()
 
 
 func _on_demon_body_entered(body: Node2D) -> void:
