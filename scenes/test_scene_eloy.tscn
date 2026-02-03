@@ -30,46 +30,47 @@
 [ext_resource type="Texture2D" uid="uid://bsc2blupaokuj" path="res://assets/Assets_Pallet.png" id="29_oh5pa"]
 [ext_resource type="PackedScene" uid="uid://buhdl02ckpug5" path="res://scenes/lava_pool.tscn" id="30_avimm"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oh5pa"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_avimm"]
 texture = ExtResource("29_oh5pa")
 texture_region_size = Vector2i(256, 256)
-4:2/0 = 0
-4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 2.9230957, -128, 4.8717957, 128, 128, 128)
 0:3/0 = 0
-1:3/0 = 0
-1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, -10.717941, -7.794876, 128, 128, -128, 128)
+0:4/0 = 0
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 5.846161, 128, 128, -128, 128, -128, 68.20511, -2.9230652, 2.9230804)
+3:0/0 = 0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 5.846161, 128, 128, -128, 128, -128, 1.9487152)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, 5.846161, -128, 128, 128, 128, 128, 68.20511, 2.9230652, 2.9230804)
+4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 128, -128, 128, -128, -128)
+4:4/0 = 0
+4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 128, -128, 128, -128, -128)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 128, -128, 128, -128, -128)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 13.641022, -128, 9.743591, -128, -128)
 2:3/0 = 0
 2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, 128, -128, 128)
-3:3/0 = 0
-3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, 11.6923065, 128, 12.6666565)
-4:3/0 = 0
-4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
-0:4/0 = 0
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, 128, -128, 128)
 1:4/0 = 0
-1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, -128, 128)
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 128, -118.87178, -134.46152, 139.33331, -138.35895, -130.56409)
 2:4/0 = 0
-2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, -128, -128, 128, 128)
-3:4/0 = 0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
-4:4/0 = 0
-4:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-128, -128, 128, -128, 128, 128, -128, 128)
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 4.8717957, -8.769226, 6.820511, -128, 74.05127, -128, 128, 128, 128)
-3:0/0 = 0
-3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, 4.8717957, -128, 4.8717957, -128, 128, 128, 128)
-4:0/0 = 0
-4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(4.8717957, 5.8461456, -128, 4.8717957, -128, 128, 128, 128, 128, 68.20511)
-1:1/size_in_atlas = Vector2i(2, 2)
-1:1/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(128, -128, 131.53845, 140.30765, -138.35895, -130.56409)
 3:2/0 = 0
-3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.9230652, -128, -128, -128, -128, 128, -1.9487152, 128)
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.97436523, -128, -1.9487305, 128, -128, 128, -128, -128)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.97436523, -128, -1.9487305, 128, 128, 128, 128, -128)
+1:1/0 = 0
+2:1/0 = 0
+2:2/0 = 0
+1:2/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_0ojeu"]
-tile_layout = 4
+[sub_resource type="TileSet" id="TileSet_ilgam"]
 tile_size = Vector2i(256, 256)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 13
-sources/2 = SubResource("TileSetAtlasSource_oh5pa")
+sources/0 = SubResource("TileSetAtlasSource_avimm")
 
 [sub_resource type="Curve2D" id="Curve2D_6b8dj"]
 _data = {
@@ -134,20 +135,25 @@ bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
 
+[node name="Platforms" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACAP7/AAAEAAQAAAADAP7/AAAEAAQAAAAEAP7/AAAEAAQAAAAFAP7/AAAEAAQAAAAGAP7/AAAEAAQAAAAHAP7/AAAEAAQAAAAIAP3/AAACAAMAAAAIAP7/AAABAAQAAAAJAP3/AAAEAAQAAAAKAP3/AAAEAAQAAAALAP3/AAABAAQAAAALAPz/AAAEAAQAAAAMAPz/AAAEAAQAAAANAPz/AAAEAAQAAAAOAPz/AAAEAAQAAAAPAPz/AAAEAAQAAAAUAPz/AAAEAAQAAAAVAPz/AAAEAAQAAAAWAPz/AAAEAAQAAAAXAPz/AAAEAAQAAAAYAPz/AAAEAAQAAAAZAPz/AAAEAAQAAAAfAPz/AAAEAAQAAAAvAPz/AAAEAAQAAAAwAPz/AAAEAAQAAAAxAPz/AAAEAAQAAAAyAPz/AAAEAAQAAAAzAPz/AAAEAAQAAAAtAP3/AAACAAMAAAAuAPz/AAACAAMAAAAuAP3/AAABAAQAAAAzAPv/AAAEAAMAAAAzAPr/AAAEAAMAAAAzAPn/AAAEAAMAAAAzAPj/AAAEAAMAAAAzAPf/AAAEAAMAAAAwAPr/AAABAAEAAAAwAPv/AAABAAIAAAAxAPr/AAACAAEAAAAxAPv/AAACAAIAAAA=")
+tile_set = SubResource("TileSet_ilgam")
+
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
 position = Vector2(1406, -753)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1406, -753)
 zoom = Vector2(0.5, 0.5)
 limit_bottom = 0
 position_smoothing_enabled = true
 script = ExtResource("3_egwr4")
 BASE_ZOOM = 0.5
 
-[node name="Platforms" type="TileMapLayer" parent="."]
-position = Vector2(1800, -760)
-tile_map_data = PackedByteArray("AAACAAAAAgAEAAQAAAADAAAAAgAEAAQAAAAEAP//AgAEAAQAAAAFAP//AgAEAAQAAAAGAP//AgAEAAQAAAAHAP//AgAEAAQAAAAIAP//AgAEAAQAAAD7/wEAAgAEAAQAAAD8/wEAAgAEAAQAAAD9/wEAAgAEAAQAAAD+/wEAAgAEAAQAAAD//wEAAgAEAAQAAAAAAAEAAgAEAAQAAAABAAEAAgABAAQAAAABAAAAAgACAAMAAAANAP//AgAEAAQAAAAOAP//AgAEAAQAAAAPAP//AgAEAAQAAAAQAP//AgAEAAQAAAARAP//AgAEAAQAAAASAP//AgAEAAQAAAAYAP//AgAEAAQAAAAEAAAAAgABAAQAAAAmAAAAAgACAAMAAAAnAAAAAgABAAQAAAAnAP//AgACAAMAAAAoAP//AgAEAAQAAAApAP//AgAEAAQAAAAqAP//AgAEAAQAAAArAP//AgAEAAQAAAAsAP7/AgAEAAMAAAAsAP3/AgAEAAMAAAAsAPz/AgAEAAMAAAAsAPv/AgAEAAMAAAAsAPr/AgAEAAMAAAAsAP//AgAEAAQAAAA=")
-tile_set = SubResource("TileSet_0ojeu")
+[node name="Exit" parent="." instance=ExtResource("29_0dj57")]
+z_index = 0
+position = Vector2(12552, -1145)
+scale = Vector2(1.2895819, 1.2895819)
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_6b8dj")
@@ -289,20 +295,17 @@ z_index = -4096
 position = Vector2(5849, -765)
 texture = ExtResource("29_ilgam")
 
-[node name="Exit" parent="." instance=ExtResource("29_0dj57")]
-position = Vector2(12552, -1145)
-scale = Vector2(1.2895819, 1.2895819)
-
 [connection signal="died" from="Player" to="Path2D/PathFollow2D" method="_on_player_died"]
 [connection signal="died" from="Player" to="DeathMenu" method="_on_player_died"]
-[connection signal="entered_ultra_instinct_mode" from="Player" to="Player/Camera2D" method="_on_player_entered_ultra_instinct_mode"]
+[connection signal="entered_ultra_instinct_mode" from="Player" to="Camera2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="Path2D/PathFollow2D" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="entered_ultra_instinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_entered_ultra_instinct_mode"]
-[connection signal="left_ultra_instrinct_mode" from="Player" to="Player/Camera2D" method="_on_player_left_ultra_instrinct_mode"]
+[connection signal="left_ultra_instrinct_mode" from="Player" to="Camera2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="Path2D/PathFollow2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="won" from="Player" to="Path2D/PathFollow2D" method="_on_player_won"]
 [connection signal="won" from="Player" to="VictoryLayer" method="_on_player_won"]
+[connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Demon" to="Player" method="_on_demon_body_entered"]
 [connection signal="ultra_instinct_depleted" from="UltraInstinctLayer" to="Player" method="_on_ultra_instinct_layer_ultra_instinct_depleted"]
 [connection signal="go_back_to_main_menu" from="VictoryLayer" to="." method="_on_victory_layer_go_back_to_main_menu"]
@@ -310,4 +313,3 @@ scale = Vector2(1.2895819, 1.2895819)
 [connection signal="split_player_in_half" from="RotarySaw" to="Player" method="_on_rotary_saw_split_player_in_half"]
 [connection signal="player_fell_in" from="LavaPool" to="Player" method="_on_lava_pool_player_fell_in"]
 [connection signal="restart_level" from="DeathMenu" to="." method="_on_death_menu_restart_level"]
-[connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]
