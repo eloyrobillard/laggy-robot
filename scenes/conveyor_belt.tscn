@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://q6871l13ss6m"]
+[gd_scene load_steps=14 format=3 uid="uid://q6871l13ss6m"]
 
 [ext_resource type="Script" uid="uid://bokjt47usnxpn" path="res://scripts/conveyor_belt.gd" id="1_65uwv"]
 [ext_resource type="Texture2D" uid="uid://u0yn8w7xmf82" path="res://assets/gear/gear_1.png" id="2_it644"]
 [ext_resource type="Texture2D" uid="uid://kaudachadwgu" path="res://assets/gear/gear_2.png" id="3_pim3x"]
 [ext_resource type="Texture2D" uid="uid://cgarx1m7lwhwd" path="res://assets/gear/gear_3.png" id="4_nlha8"]
 [ext_resource type="Texture2D" uid="uid://dppqpmkmvajy2" path="res://assets/gear/gear_4.png" id="5_g4y7j"]
+[ext_resource type="Script" uid="uid://1sualdy6pjyu" path="res://scripts/conveyor_path_2d.gd" id="6_444fa"]
 [ext_resource type="Texture2D" uid="uid://dgl3fey7toqql" path="res://assets/gear/clutch.png" id="6_pim3x"]
 [ext_resource type="Script" uid="uid://dqnkny4sscyyu" path="res://scripts/path_follow_2d.gd" id="7_g4y7j"]
 [ext_resource type="Texture2D" uid="uid://bbkdbrye6fd8c" path="res://assets/conveyor_belt.png" id="8_g4y7j"]
@@ -75,227 +76,14 @@ frame_progress = 0.583294
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_it644")
+script = ExtResource("6_444fa")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-13.931791, -109.052826)
+position = Vector2(15, -109)
 rotation = 3.1415927
-progress = 28.798187
 script = ExtResource("7_g4y7j")
 
 [node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-94.44075, -57.228687)
-rotation = 2.0899425
-progress = 128.40836
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D2"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-105.24993, 30.946198)
-rotation = 1.1916177
-progress = 220.1286
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D3"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
-position = Vector2(48.612762, 110)
-progress = 409.48654
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D4"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D5" type="PathFollow2D" parent="Path2D"]
-position = Vector2(143.29932, 110)
-progress = 504.16553
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D5"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D6" type="PathFollow2D" parent="Path2D"]
-position = Vector2(235.01895, 110)
-progress = 595.88574
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D6"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D7" type="PathFollow2D" parent="Path2D"]
-position = Vector2(333.64438, 110)
-progress = 694.5097
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D7"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D8" type="PathFollow2D" parent="Path2D"]
-position = Vector2(431.2832, 110)
-progress = 792.1474
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D8"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D9" type="PathFollow2D" parent="Path2D"]
-position = Vector2(527.9348, 110.00001)
-progress = 888.7988
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D9"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D10" type="PathFollow2D" parent="Path2D"]
-position = Vector2(622.63525, 110)
-progress = 983.4778
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D10"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D11" type="PathFollow2D" parent="Path2D"]
-position = Vector2(706.3207, 87.523674)
-rotation = -0.6202495
-progress = 1072.2394
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D11"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D12" type="PathFollow2D" parent="Path2D"]
-position = Vector2(747.5021, 24.489838)
-rotation = -1.3734008
-progress = 1149.166
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D12"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D13" type="PathFollow2D" parent="Path2D"]
-position = Vector2(733.4739, -57.708843)
-rotation = -1.9890206
-progress = 1234.9688
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D13"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D14" type="PathFollow2D" parent="Path2D"]
-position = Vector2(679.6986, -102.36079)
-rotation = -2.7233684
-progress = 1306.9642
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D14"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D15" type="PathFollow2D" parent="Path2D"]
-position = Vector2(600.64166, -109)
-rotation = 3.1415927
-progress = 1386.8497
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D15"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D16" type="PathFollow2D" parent="Path2D"]
-position = Vector2(499.04874, -109)
-rotation = 3.1415927
-progress = 1488.4323
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D16"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D17" type="PathFollow2D" parent="Path2D"]
-position = Vector2(401.4088, -109.00001)
-rotation = 3.1415927
-progress = 1586.07
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D17"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D18" type="PathFollow2D" parent="Path2D"]
-position = Vector2(300.81198, -109)
-rotation = 3.1415927
-progress = 1686.6664
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D18"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D19" type="PathFollow2D" parent="Path2D"]
-position = Vector2(194.29639, -109)
-rotation = 3.1415927
-progress = 1793.1802
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D19"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D20" type="PathFollow2D" parent="Path2D"]
-position = Vector2(88.75585, -109)
-rotation = 3.1415927
-progress = 1898.7078
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D20"]
-position = Vector2(-13.728134, 78.838684)
-scale = Vector2(0.7618396, 0.76183957)
-texture = ExtResource("6_pim3x")
-
-[node name="PathFollow2D21" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-53.31833, 95.340836)
-rotation = 0.4636476
-progress = 304.94516
-script = ExtResource("7_g4y7j")
-
-[node name="Clutch" type="Sprite2D" parent="Path2D/PathFollow2D21"]
 position = Vector2(-13.728134, 78.838684)
 scale = Vector2(0.7618396, 0.76183957)
 texture = ExtResource("6_pim3x")
