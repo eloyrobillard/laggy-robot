@@ -330,7 +330,7 @@ tile_map_data = PackedByteArray("AAACAP7/AAAEAAQAAAADAP7/AAAEAAQAAAAEAP7/AAAEAAQ
 tile_set = SubResource("TileSet_ilgam")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(5456, -1264)
+position = Vector2(1248, -800)
 
 [node name="InvisiblePlayer" type="CharacterBody2D" parent="."]
 position = Vector2(1304, 1256)
@@ -350,7 +350,7 @@ shape = SubResource("CapsuleShape2D_avimm")
 debug_color = Color(0.8039216, 0.6, 0.69803923, 0.41960785)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(5800, 656)
+position = Vector2(2416, 656)
 zoom = Vector2(0.5, 0.5)
 limit_bottom = 0
 position_smoothing_enabled = true
@@ -420,6 +420,17 @@ theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_styles/fill = SubResource("StyleBoxFlat_y2iih")
 step = 1.0
 value = 100.0
+
+[node name="PlayerPosition" type="ColorRect" parent="UltraInstinctLayer"]
+visible = false
+custom_minimum_size = Vector2(1, 0)
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("9_3atht")

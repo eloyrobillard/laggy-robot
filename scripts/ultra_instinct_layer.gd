@@ -5,6 +5,7 @@ signal ultra_instinct_depleted
 @onready var ultra_instinct_tint: TextureRect = $UltraInstinctTint
 @onready var ultra_instinct_tint_2: TextureRect = $UltraInstinctTint2
 @onready var progress_bar: ProgressBar = $ProgressBar
+@onready var player_position: ColorRect = $PlayerPosition
 
 @export var MAX_ULTRA_INSTINCT_SEC := 20.0
 
@@ -41,10 +42,12 @@ func _process(delta: float) -> void:
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	in_ultra_instinct_mode = true
 	ultra_instinct_factor = slow_down_factor
+	player_position.visible = true
 
 
 func _on_player_left_ultra_instrinct_mode() -> void:
 	in_ultra_instinct_mode = false
+	player_position.visible = false
 
 	ultra_instinct_tint.modulate.a = 0
 	ultra_instinct_tint_2.modulate.a = 0
