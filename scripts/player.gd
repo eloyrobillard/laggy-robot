@@ -73,7 +73,7 @@ func check_box():
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
 		if collider.is_in_group("box"):
-			collider.apply_impulse(-collision.get_normal() * 1000)
+			collider.apply_impulse(-collision.get_normal() * SPEED)
 			collided_with_box = true
 
 	return collided_with_box

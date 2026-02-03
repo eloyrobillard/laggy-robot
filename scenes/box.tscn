@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cckh8xmrr4hfc" path="res://assets/Box_poussable.png" id="2_ks2v0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_3inec"]
-friction = 0.1
+friction = 0.0
 bounce = 0.2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ks2v0"]

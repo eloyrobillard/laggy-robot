@@ -1,10 +1,9 @@
 extends Camera2D
 
-@onready var player: CharacterBody2D = $".."
+@onready var player: CharacterBody2D = $"../Player"
+@onready var invisible_player: CharacterBody2D = $"../InvisiblePlayer"
 
 @export var BASE_ZOOM = 1.5
-
-const SPEED = 1000.0
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_slow_down = 1
@@ -18,8 +17,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if in_ultra_instinct_mode:
-		var direction = Input.get_axis("left", "right")
-		global_position.x += direction * SPEED * delta
+		global_position.x = invisible_player.global_position.x
+	else:
+		global_position.x = lerpf(global_position.x, player.global_position.x, delta)
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
