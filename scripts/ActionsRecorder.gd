@@ -6,7 +6,7 @@ var inputList: Array[InputFrame] = []
 
 
 func _physics_process(_delta):
-	if isRecording:
+	if isRecording and currentFrame:
 		currentFrame += 1
 
 
@@ -16,8 +16,12 @@ func displayList():
 
 
 func _input(event):
-	if not isRecording or event is not InputEvent:
+	if not isRecording or event is not InputEvent or event.is_action("ultra-instinct"):
+		currentFrame = 0
 		return
+
+	if currentFrame == 0:
+		currentFrame = 1
 
 	if event.is_pressed():
 		var action = InputActions.Action.ERROR

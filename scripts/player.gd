@@ -116,11 +116,11 @@ func _on_demon_body_entered(body: Node2D) -> void:
 
 func _on_exit_body_entered(body: Node2D) -> void:
 	if body == self:
-		get_player_in_end_mode()
+		get_player_ready_for_level_end()
 		won.emit()
 
 
-func get_player_in_end_mode() -> void:
+func get_player_ready_for_level_end() -> void:
 	leave_ultra_instinct()
 	set_process_input(false)
 	set_physics_process(false)
@@ -129,7 +129,7 @@ func get_player_in_end_mode() -> void:
 
 
 func die() -> void:
-	get_player_in_end_mode()
+	get_player_ready_for_level_end()
 	died.emit()
 
 
