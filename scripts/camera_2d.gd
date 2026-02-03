@@ -1,6 +1,10 @@
 extends Camera2D
 
+@onready var player: CharacterBody2D = $".."
+
 @export var BASE_ZOOM = 1.5
+
+const SPEED = 1000.0
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_slow_down = 1
@@ -8,19 +12,14 @@ var ultra_instinct_slow_down = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reset_zoom()
+	zoom = Vector2(BASE_ZOOM, BASE_ZOOM)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if in_ultra_instinct_mode:
-		zoom *= 1 + delta / ultra_instinct_slow_down
-	else:
-		reset_zoom()
-
-
-func reset_zoom() -> void:
-	zoom = Vector2(BASE_ZOOM, BASE_ZOOM)
+		var direction = Input.get_axis("left", "right")
+		global_position.x += direction * SPEED * delta
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
@@ -31,3 +30,4 @@ func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 func _on_player_left_ultra_instrinct_mode() -> void:
 	in_ultra_instinct_mode = false
 	ultra_instinct_slow_down = 1
+	global_position.x = player.global_position.x

@@ -15,7 +15,7 @@ func displayList():
 		prints(input.frame, input.action, input.pressed)
 
 
-func _unhandled_input(event):
+func _input(event):
 	if not isRecording or event is not InputEvent:
 		return
 
