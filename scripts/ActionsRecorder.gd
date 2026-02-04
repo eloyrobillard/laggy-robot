@@ -57,14 +57,36 @@ func _input(event):
 		if event.is_action_released("jump"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.JUMP, false)
 			actionPairs.append([pressedActions["jump"], frame])
+			pressedActions["jump"] = null
 		elif event.is_action_released("left"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.LEFT, false)
 			actionPairs.append([pressedActions["left"], frame])
+			pressedActions["left"] = null
 		elif event.is_action_released("right"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.RIGHT, false)
 			actionPairs.append([pressedActions["right"], frame])
+			pressedActions["right"] = null
 		else:
 			return
 
 		if frame:
 			inputList.append(frame)
+
+
+func _on_player_left_ultra_instrinct_mode() -> void:
+	# NOTE: wrap pressed action pairs
+	var frame
+	if pressedActions["jump"]:
+		frame = InputFrame.new(currentFrame, InputActions.Action.JUMP, false)
+		actionPairs.append([pressedActions["jump"], frame])
+		pressedActions["jump"] = null
+	elif pressedActions["left"]:
+		frame = InputFrame.new(currentFrame, InputActions.Action.LEFT, false)
+		actionPairs.append([pressedActions["left"], frame])
+		pressedActions["left"] = null
+	elif pressedActions["right"]:
+		frame = InputFrame.new(currentFrame, InputActions.Action.RIGHT, false)
+		actionPairs.append([pressedActions["right"], frame])
+		pressedActions["right"] = null
+	else:
+		return
