@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=65 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -312,15 +312,17 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_egwr4"]
-offsets = PackedFloat32Array(0, 0.27333334)
-colors = PackedColorArray(1, 0, 0, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2iih"]
-gradient = SubResource("Gradient_egwr4")
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y2iih"]
 bg_color = Color(0.64705884, 0.16470589, 0.16470589, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpai"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(1, 0, 0, 1)
+border_blend = true
 
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
@@ -389,25 +391,6 @@ offset = Vector2(-100, 0)
 [node name="UltraInstinctLayer" type="CanvasLayer" parent="."]
 script = ExtResource("8_y2iih")
 
-[node name="UltraInstinctTint" type="TextureRect" parent="UltraInstinctLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_y2iih")
-
-[node name="UltraInstinctTint2" type="TextureRect" parent="UltraInstinctLayer"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_y2iih")
-flip_h = true
-
 [node name="ProgressBar" type="ProgressBar" parent="UltraInstinctLayer"]
 anchors_preset = 10
 anchor_right = 1.0
@@ -431,6 +414,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UltraInstinctLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 208.0
+grow_horizontal = 2
+
+[node name="Playback" type="HBoxContainer" parent="UltraInstinctLayer/ScrollContainer"]
+layout_mode = 2
+
+[node name="UltraInstinctTint" type="Panel" parent="UltraInstinctLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lcpai")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("9_3atht")
