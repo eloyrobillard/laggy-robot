@@ -73,6 +73,12 @@ func _input(event):
 			inputList.append(frame)
 
 
+func _on_player_entered_ultra_instinct_mode(_slow_down_factor: float) -> void:
+	inputList.clear()
+	actionPairs.clear()
+	currentFrame = 0
+
+
 func _on_player_left_ultra_instrinct_mode() -> void:
 	# NOTE: wrap pressed action pairs
 	var frame
