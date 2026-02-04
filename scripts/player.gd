@@ -26,10 +26,12 @@ var playback_right := false
 func _input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventKey":
-			# Handle ultra-instinct
+			# NOTE: allows the player to enter ultra instinct with any input
 			if Input.is_anything_pressed() and not in_ultra_instinct_mode and can_enter_ultra_instinct:
 				enter_ultra_instinct()
+				# NOTE: this condition prevents an infinite loop of entering/exiting ultra instinct
 				if not Input.is_action_just_pressed("ultra-instinct"):
+					# NOTE: re-send the current input press event so it gets recorded in the ActionsRecorder
 					Input.parse_input_event(event)
 
 			if Input.is_action_just_pressed("ultra-instinct") and in_ultra_instinct_mode:
@@ -136,6 +138,7 @@ func PlaybackMove():
 	playbackFrame += 1
 	var inputs = recorder.inputList
 
+	# NOTE: stop playback immediately when entering ultra instinct to avoid undefined behavior
 	while not in_ultra_instinct_mode and playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
 

@@ -4,6 +4,10 @@ var isRecording := false
 var currentFrame := 0
 var inputList: Array[InputFrame] = []
 
+## Used to pair released actions with pressed actions
+## This is useful when showing the events playback in the UI
+var pressedActions = { "jump": null, "left": null, "right": null }
+
 
 func _physics_process(_delta):
 	if isRecording and currentFrame:
