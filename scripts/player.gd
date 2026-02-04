@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 					# NOTE: re-send the current input press event so it gets recorded in the ActionsRecorder
 					Input.parse_input_event(event)
 
-			if Input.is_action_just_pressed("ultra-instinct") and in_ultra_instinct_mode:
+			elif Input.is_action_just_pressed("ultra-instinct") and in_ultra_instinct_mode:
 				leave_ultra_instinct()
 
 
@@ -178,8 +178,6 @@ func EndPlayback():
 	playbackFrame = 0
 	playbackIndex = 0
 	playingRecord = false
-	recorder.inputList.clear()
-	recorder.currentFrame = 0
 	playback_left = false
 	playback_right = false
 
