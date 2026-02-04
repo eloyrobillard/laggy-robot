@@ -136,7 +136,7 @@ func PlaybackMove():
 	playbackFrame += 1
 	var inputs = recorder.inputList
 
-	while playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
+	while not in_ultra_instinct_mode and playbackIndex < inputs.size() and inputs[playbackIndex].frame == playbackFrame:
 		var f = inputs[playbackIndex]
 
 		if f.action == InputActions.Action.JUMP and is_on_floor():
