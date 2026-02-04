@@ -7,6 +7,7 @@ var inputList: Array[InputFrame] = []
 ## Used to pair released actions with pressed actions
 ## This is useful when showing the events playback in the UI
 var pressedActions = { "jump": null, "left": null, "right": null }
+var actionPairs: Array = []
 
 
 func _physics_process(_delta):
@@ -27,30 +28,43 @@ func _input(event):
 	if currentFrame == 0:
 		currentFrame = 1
 
+	# NOTE: We save key press event to pair them with a release later on.
+	# This is useful when displaying a playback guide in the UI.
+	# I believe this should cause no issue, based on two observations:
+	# - you cannot release a key without having first pressed it
+	# - you cannot press down the same key a second time without releasing it
+	# On the other hand, you CAN press a key and not release it before ultra instinct ends.
+	# This implies that all press events should be "wrapped" with a release event before playback begins.
 	if event.is_pressed():
-		var action = InputActions.Action.ERROR
+		var frame
 		if event.is_action_pressed("jump"):
-			action = InputActions.Action.JUMP
+			frame = InputFrame.new(currentFrame, InputActions.Action.JUMP, true)
+			pressedActions["jump"] = frame
 		elif event.is_action_pressed("left"):
-			action = InputActions.Action.LEFT
+			frame = InputFrame.new(currentFrame, InputActions.Action.LEFT, true)
+			pressedActions["left"] = frame
 		elif event.is_action_pressed("right"):
-			action = InputActions.Action.RIGHT
+			frame = InputFrame.new(currentFrame, InputActions.Action.RIGHT, true)
+			pressedActions["right"] = frame
 		else:
 			return
 
-		var frame = InputFrame.new(currentFrame, action, true)
-		inputList.append(frame)
+		if frame:
+			inputList.append(frame)
 
 	elif event.is_released():
-		var action = InputActions.Action.ERROR
+		var frame
 		if event.is_action_released("jump"):
-			action = InputActions.Action.JUMP
+			frame = InputFrame.new(currentFrame, InputActions.Action.JUMP, false)
+			actionPairs.append([pressedActions["jump"], frame])
 		elif event.is_action_released("left"):
-			action = InputActions.Action.LEFT
+			frame = InputFrame.new(currentFrame, InputActions.Action.LEFT, false)
+			actionPairs.append([pressedActions["left"], frame])
 		elif event.is_action_released("right"):
-			action = InputActions.Action.RIGHT
+			frame = InputFrame.new(currentFrame, InputActions.Action.RIGHT, false)
+			actionPairs.append([pressedActions["right"], frame])
 		else:
 			return
 
-		var frame = InputFrame.new(currentFrame, action, false)
-		inputList.append(frame)
+		if frame:
+			inputList.append(frame)
