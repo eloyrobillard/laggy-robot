@@ -27,14 +27,13 @@ func _input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventKey":
 			# Handle ultra-instinct
-			if Input.is_action_just_pressed("ultra-instinct") and can_enter_ultra_instinct:
-				if in_ultra_instinct_mode:
-					leave_ultra_instinct()
-				else:
-					enter_ultra_instinct()
+			if Input.is_anything_pressed() and not in_ultra_instinct_mode and can_enter_ultra_instinct:
+				enter_ultra_instinct()
+				if not Input.is_action_just_pressed("ultra-instinct"):
+					Input.parse_input_event(event)
 
-			if in_ultra_instinct_mode:
-				return
+			if Input.is_action_just_pressed("ultra-instinct") and in_ultra_instinct_mode:
+				leave_ultra_instinct()
 
 
 func _physics_process(delta: float) -> void:
