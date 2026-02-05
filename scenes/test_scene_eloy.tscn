@@ -415,14 +415,28 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UltraInstinctLayer"]
-anchors_preset = 10
+[node name="PlaybackPanel" type="Panel" parent="UltraInstinctLayer"]
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
-offset_bottom = 208.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = -176.0
+offset_right = -160.0
 grow_horizontal = 2
+grow_vertical = 0
 
-[node name="Playback" type="HBoxContainer" parent="UltraInstinctLayer/ScrollContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UltraInstinctLayer/PlaybackPanel"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 1656.0
+offset_bottom = 176.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="PlaybackVBox" type="VBoxContainer" parent="UltraInstinctLayer/PlaybackPanel/ScrollContainer"]
 layout_mode = 2
+alignment = 1
 
 [node name="UltraInstinctTint" type="Panel" parent="UltraInstinctLayer"]
 visible = false
@@ -437,7 +451,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_lcpai")
 script = ExtResource("9_3atht")
 
 [node name="ElapsedTime" type="Label" parent="HUD"]
-offset_right = 40.0
+offset_right = 139.0
 offset_bottom = 23.0
 text = "Elapsed time: 0.0s"
 
@@ -532,6 +546,7 @@ texture = ExtResource("29_ilgam")
 [connection signal="left_ultra_instrinct_mode" from="Player" to="Camera2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="Path2D/PathFollow2D" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="Player" to="UltraInstinctLayer" method="_on_player_left_ultra_instrinct_mode"]
+[connection signal="recorded_action" from="Player" to="UltraInstinctLayer" method="_on_player_recorded_action"]
 [connection signal="won" from="Player" to="Path2D/PathFollow2D" method="_on_player_won"]
 [connection signal="won" from="Player" to="VictoryLayer" method="_on_player_won"]
 [connection signal="body_entered" from="Exit" to="Player" method="_on_exit_body_entered"]

@@ -4,6 +4,8 @@ signal left_ultra_instrinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
+## Use to let UI know to draw the next action frame (pair)
+signal recorded_action(actions: Array)
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var recorder: Node = $ActionsRecorder
@@ -199,3 +201,7 @@ func _on_rotary_saw_split_player_in_half() -> void:
 
 func _on_lava_pool_player_fell_in() -> void:
 	die()
+
+
+func _on_actions_recorder_added_frame_pair(pair: Array) -> void:
+	recorded_action.emit(pair)

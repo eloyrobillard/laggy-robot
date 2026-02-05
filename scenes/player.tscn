@@ -217,3 +217,4 @@ script = ExtResource("2_g2els")
 [connection signal="entered_ultra_instinct_mode" from="." to="ActionsRecorder" method="_on_player_entered_ultra_instinct_mode"]
 [connection signal="left_ultra_instrinct_mode" from="." to="ActionsRecorder" method="_on_player_left_ultra_instrinct_mode"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="added_frame_pair" from="ActionsRecorder" to="." method="_on_actions_recorder_added_frame_pair"]

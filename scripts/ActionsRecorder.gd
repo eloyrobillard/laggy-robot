@@ -1,5 +1,8 @@
 extends Node
 
+## Transmit new pair to show it in playback UI
+signal added_frame_pair(frame_pairs: Array)
+
 var isRecording := false
 var currentFrame := 0
 var inputList: Array[InputFrame] = []
@@ -54,23 +57,29 @@ func _input(event):
 
 	elif event.is_released():
 		var frame
+		var pair
 		if event.is_action_released("jump"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.JUMP, false)
-			actionPairs.append([pressedActions["jump"], frame])
+			pair = [pressedActions["jump"], frame]
+			actionPairs.append(pair)
 			pressedActions["jump"] = null
 		elif event.is_action_released("left"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.LEFT, false)
-			actionPairs.append([pressedActions["left"], frame])
+			pair = [pressedActions["left"], frame]
+			actionPairs.append(pair)
 			pressedActions["left"] = null
 		elif event.is_action_released("right"):
 			frame = InputFrame.new(currentFrame, InputActions.Action.RIGHT, false)
-			actionPairs.append([pressedActions["right"], frame])
+			pair = [pressedActions["right"], frame]
+			actionPairs.append(pair)
 			pressedActions["right"] = null
 		else:
 			return
 
 		if frame:
 			inputList.append(frame)
+
+		added_frame_pair.emit(pair)
 
 
 func _on_player_entered_ultra_instinct_mode(_slow_down_factor: float) -> void:
