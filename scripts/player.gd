@@ -14,7 +14,10 @@ const JUMP_VELOCITY = -1500.0
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
-var can_enter_ultra_instinct = true
+var ultra_instinct_gauge_non_empty = true
+
+const ULTRA_INSTINCT_WAIT_SECS = 1.0
+var ultra_instinct_timer_finished = true
 
 var playingRecord := false
 var playbackFrame := 0
@@ -27,7 +30,7 @@ func _input(event: InputEvent) -> void:
 	match event.get_class():
 		"InputEventKey":
 			# NOTE: allows the player to enter ultra instinct with any input
-			if Input.is_anything_pressed() and not in_ultra_instinct_mode and can_enter_ultra_instinct:
+			if Input.is_anything_pressed() and not in_ultra_instinct_mode and ultra_instinct_gauge_non_empty and ultra_instinct_timer_finished:
 				enter_ultra_instinct()
 				# NOTE: this condition prevents an infinite loop of entering/exiting ultra instinct
 				if not Input.is_action_just_pressed("ultra-instinct"):
@@ -82,7 +85,7 @@ func check_box():
 
 func _on_ultra_instinct_layer_ultra_instinct_depleted() -> void:
 	leave_ultra_instinct()
-	can_enter_ultra_instinct = false
+	ultra_instinct_gauge_non_empty = false
 
 
 func enter_ultra_instinct() -> void:
@@ -100,9 +103,12 @@ func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
 	left_ultra_instrinct_mode.emit()
 	ultra_instinct_factor = 1
+	ultra_instinct_timer_finished = false
 
 	recorder.isRecording = false
 	playingRecord = true
+	await get_tree().create_timer(ULTRA_INSTINCT_WAIT_SECS).timeout
+	ultra_instinct_timer_finished = true
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
