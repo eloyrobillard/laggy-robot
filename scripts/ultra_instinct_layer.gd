@@ -51,6 +51,14 @@ func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	ultra_instinct_tint.visible = true
 	player_position.visible = true
 
+	action_lines = []
+
+	for line in label_lines:
+		for label in line:
+			playback_panel.remove_child(label)
+			label.free()
+	label_lines = []
+
 
 func _on_player_left_ultra_instinct_mode() -> void:
 	in_ultra_instinct_mode = false
