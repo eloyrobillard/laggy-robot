@@ -111,6 +111,7 @@ func scroll_playback_ui_to_left(scroll_by_x: float) -> void:
 	for line in label_lines:
 		for label in line:
 			label.offset_left -= scroll_by_x
+			label.offset_right -= scroll_by_x
 
 
 func intervals_overlap(b1: int, e1: int, b2: int, e2: int) -> bool:
