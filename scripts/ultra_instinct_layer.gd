@@ -5,11 +5,12 @@ signal ultra_instinct_depleted
 @onready var ultra_instinct_tint: Panel = $UltraInstinctTint
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var player_position: ColorRect = $PlayerPosition
-@onready var playback_panel: Panel = $ScrollContainer/PlaybackPanel
+@onready var playback_panel: Panel = $PlaybackPanel
 
 @export var MAX_ULTRA_INSTINCT_SEC := 20.0
 
 const PLAYBACK_UI_SCALE_X = 10
+const PLAYBACK_UI_PADDING_LEFT = 25
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
@@ -36,8 +37,13 @@ func _process(delta: float) -> void:
 		# current_ultra_instinct_percent never reaches exactly 0%
 		if progress_bar.value == 0:
 			ultra_instinct_depleted.emit()
-	else:
-		scroll_playback_ui_to_left(1)
+
+
+func _physics_process(_delta: float) -> void:
+	if not in_ultra_instinct_mode:
+		# NOTE: ActionsRecorder increments the current frame in _physics_process,
+		# so updating the left scroll here is the only way to match the actual playback timing.
+		scroll_playback_ui_to_left(PLAYBACK_UI_SCALE_X)
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
@@ -96,7 +102,7 @@ func _on_player_recorded_action(action_pair: Array) -> void:
 	label.add_theme_font_size_override("font_size", 32)
 	playback_panel.add_child(label)
 
-	label.offset_left = (prev_end + margin_px_unscaled) * PLAYBACK_UI_SCALE_X
+	label.offset_left = PLAYBACK_UI_PADDING_LEFT + (prev_end + margin_px_unscaled) * PLAYBACK_UI_SCALE_X
 	label.offset_top = i * 52
 	label.set_size(Vector2((end - begin) * PLAYBACK_UI_SCALE_X, 32))
 
