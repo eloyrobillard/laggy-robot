@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=67 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -324,6 +324,14 @@ border_width_bottom = 20
 border_color = Color(1, 0, 0, 1)
 border_blend = true
 
+[sub_resource type="Gradient" id="Gradient_lcpai"]
+offsets = PackedFloat32Array(0, 0.043624163)
+colors = PackedColorArray(1, 0.84313726, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_c47x1"]
+gradient = SubResource("Gradient_lcpai")
+width = 1
+
 [node name="TestSceneEloy" type="Node2D"]
 script = ExtResource("1_2pyty")
 
@@ -415,19 +423,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0, 0, 1)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UltraInstinctLayer"]
-offset_left = 144.0
-offset_top = 848.0
-offset_right = 1784.0
-offset_bottom = 1024.0
-horizontal_scroll_mode = 2
-vertical_scroll_mode = 0
-
-[node name="PlaybackPanel" type="Panel" parent="UltraInstinctLayer/ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [node name="UltraInstinctTint" type="Panel" parent="UltraInstinctLayer"]
 visible = false
 anchors_preset = 15
@@ -436,6 +431,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lcpai")
+
+[node name="PlaybackPanel" type="Panel" parent="UltraInstinctLayer"]
+clip_contents = true
+offset_left = 144.0
+offset_top = 848.0
+offset_right = 1784.0
+offset_bottom = 1016.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UltraInstinctLayer/PlaybackPanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_right = 27.0
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_c47x1")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("9_3atht")
