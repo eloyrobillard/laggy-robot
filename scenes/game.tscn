@@ -27,30 +27,17 @@ anchor_bottom = 0.5
 offset_left = -742.5
 offset_top = -394.0
 offset_right = 742.5
-offset_bottom = -64.0
+offset_bottom = 410.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 128
+theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "Use [color=orange_red]A[/color] and [color=orange_red]D[/color] to move"
-horizontal_alignment = 1
-vertical_alignment = 1
+text = "Use [color=orange_red]A[/color] and [color=orange_red]D[/color] to move
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="ControlsLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -742.5
-offset_top = 30.0
-offset_right = 742.5
-offset_bottom = 360.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 128
-bbcode_enabled = true
-text = "Use [color=green]Space[/color] to jump"
+Use [color=green]Space[/color] to jump
+
+(or so you would think...)
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
