@@ -5,9 +5,11 @@ signal ultra_instinct_depleted
 @onready var ultra_instinct_tint: Panel = $UltraInstinctTint
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var player_position: ColorRect = $PlayerPosition
-@onready var playback_v_box: VBoxContainer = $PlaybackPanel/ScrollContainer/PlaybackVBox
+@onready var playback_panel: Panel = $ScrollContainer/PlaybackPanel
 
 @export var MAX_ULTRA_INSTINCT_SEC := 20.0
+
+const PLAYBACK_UI_SCALE_X = 10
 
 var in_ultra_instinct_mode = false
 var ultra_instinct_factor = 1
@@ -47,9 +49,10 @@ func _on_player_left_ultra_instrinct_mode() -> void:
 	player_position.visible = false
 
 
-func _on_player_recorded_action(action: Array) -> void:
-	var begin = action[0].frame
-	var end = action[1].frame
+func _on_player_recorded_action(action_pair: Array) -> void:
+	var begin = action_pair[0].frame
+	var end = action_pair[1].frame
+	var action = action_pair[0].action
 
 	# find line to put action in
 	var i = 0
@@ -72,30 +75,36 @@ func _on_player_recorded_action(action: Array) -> void:
 	var prev_end = begin
 	if i >= action_lines.size():
 		action_lines.push_back([])
-		playback_v_box.add_child(HBoxContainer.new())
 
 		# no previous action on the current line
 		prev_end = 0
 	# if putting new action in a previous line, get last action on that line
 	else:
 		prev_end = action_lines[i].back()[1].frame
-	action_lines[i].push_back(action)
+	action_lines[i].push_back(action_pair)
 
 	# create new label inside a margin container at line i
 	# NOTE: I'll use one px per frame for now
-	var margin_px = begin - prev_end
-	var margin_container = MarginContainer.new()
-	margin_container.add_theme_constant_override("margin_left", margin_px)
-	playback_v_box.get_child(i).add_child(margin_container)
+	var margin_px_unscaled = begin - prev_end
 
-	# TODO: 文字をクリッピングするとScrollContainerやHBoxContainerを使うとサイズは０になってしまう？
-	# 手動で位置を指定すれば？
 	var label = Label.new()
-	# label.clip_text = true
-	label.text = "Foo"
-	label.add_theme_font_size_override("normal_font_size", 32)
-	label.size.x = end - begin
-	margin_container.add_child(label)
+	label.clip_text = true
+	label.text = InputActions.to_str(action)
+	label.add_theme_font_size_override("font_size", 32)
+	playback_panel.add_child(label)
+
+	label.offset_left = (prev_end + margin_px_unscaled) * PLAYBACK_UI_SCALE_X
+	label.offset_top = i * 52
+	label.set_size(Vector2((end - begin) * PLAYBACK_UI_SCALE_X, 32))
+
+	var style = StyleBoxFlat.new()
+	style.bg_color.a = 0
+	style.set_border_width_all(2)
+	label.add_theme_stylebox_override("normal", style)
+
+	if label.offset_left + label.size.x > playback_panel.size.x:
+		playback_panel.size.x = label.offset_left + label.size.x
+		print(playback_panel.size.x)
 
 
 func intervals_overlap(b1: int, e1: int, b2: int, e2: int) -> bool:
