@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-signal left_ultra_instrinct_mode
+signal left_ultra_instinct_mode
 signal entered_ultra_instinct_mode(slow_down_factor: float)
 signal died
 signal won
@@ -103,7 +103,7 @@ func enter_ultra_instinct() -> void:
 
 func leave_ultra_instinct() -> void:
 	in_ultra_instinct_mode = false
-	left_ultra_instrinct_mode.emit()
+	left_ultra_instinct_mode.emit()
 	ultra_instinct_factor = 1
 	ultra_instinct_timer_finished = false
 

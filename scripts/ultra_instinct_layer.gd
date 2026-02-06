@@ -52,7 +52,7 @@ func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	player_position.visible = true
 
 
-func _on_player_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instinct_mode() -> void:
 	in_ultra_instinct_mode = false
 	ultra_instinct_tint.visible = false
 	player_position.visible = false

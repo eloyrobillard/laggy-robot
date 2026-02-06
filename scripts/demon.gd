@@ -18,7 +18,7 @@ func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	inverse_speed = BASE_INV_SPEED * slow_down_factor
 
 
-func _on_player_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instinct_mode() -> void:
 	inverse_speed = BASE_INV_SPEED
 
 

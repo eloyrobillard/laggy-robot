@@ -27,7 +27,7 @@ func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
 	ultra_instinct_slow_down = slow_down_factor
 
 
-func _on_player_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instinct_mode() -> void:
 	in_ultra_instinct_mode = false
 	ultra_instinct_slow_down = 1
 	global_position.x = player.global_position.x

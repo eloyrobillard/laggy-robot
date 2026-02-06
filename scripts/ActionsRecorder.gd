@@ -88,7 +88,7 @@ func _on_player_entered_ultra_instinct_mode(_slow_down_factor: float) -> void:
 	currentFrame = 0
 
 
-func _on_player_left_ultra_instrinct_mode() -> void:
+func _on_player_left_ultra_instinct_mode() -> void:
 	# NOTE: wrap pressed action pairs
 	var frame
 	if pressedActions["jump"]:
