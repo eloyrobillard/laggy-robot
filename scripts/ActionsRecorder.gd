@@ -79,7 +79,8 @@ func _input(event):
 		if frame:
 			inputList.append(frame)
 
-		added_frame_pair.emit(pair)
+		if pair[0] and pair[1]:
+			added_frame_pair.emit(pair)
 
 
 func _on_player_entered_ultra_instinct_mode(_slow_down_factor: float) -> void:
