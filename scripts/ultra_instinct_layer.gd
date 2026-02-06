@@ -16,6 +16,7 @@ var ultra_instinct_factor = 1
 var current_ultra_instinct_sec
 var current_ultra_instinct_percent
 var action_lines: Array
+var label_lines: Array
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,8 @@ func _process(delta: float) -> void:
 		# current_ultra_instinct_percent never reaches exactly 0%
 		if progress_bar.value == 0:
 			ultra_instinct_depleted.emit()
+	else:
+		scroll_playback_ui_to_left(1)
 
 
 func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
@@ -75,6 +78,7 @@ func _on_player_recorded_action(action_pair: Array) -> void:
 	var prev_end = begin
 	if i >= action_lines.size():
 		action_lines.push_back([])
+		label_lines.push_back([])
 
 		# no previous action on the current line
 		prev_end = 0
@@ -84,7 +88,6 @@ func _on_player_recorded_action(action_pair: Array) -> void:
 	action_lines[i].push_back(action_pair)
 
 	# create new label inside a margin container at line i
-	# NOTE: I'll use one px per frame for now
 	var margin_px_unscaled = begin - prev_end
 
 	var label = Label.new()
@@ -101,10 +104,13 @@ func _on_player_recorded_action(action_pair: Array) -> void:
 	style.bg_color.a = 0
 	style.set_border_width_all(2)
 	label.add_theme_stylebox_override("normal", style)
+	label_lines[i].push_back(label)
 
-	if label.offset_left + label.size.x > playback_panel.size.x:
-		playback_panel.size.x = label.offset_left + label.size.x
-		print(playback_panel.size.x)
+
+func scroll_playback_ui_to_left(scroll_by_x: float) -> void:
+	for line in label_lines:
+		for label in line:
+			label.offset_left -= scroll_by_x
 
 
 func intervals_overlap(b1: int, e1: int, b2: int, e2: int) -> bool:
