@@ -11,11 +11,11 @@ enum Action {
 static func to_str(action: Action) -> StringName:
 	match action:
 		Action.LEFT:
-			return "left"
+			return "LEFT"
 		Action.RIGHT:
-			return "right"
+			return "RIGHT"
 		Action.JUMP:
-			return "jump"
+			return "JUMP"
 		_:
 			push_error("Unknown input action: %s" % action)
 			return ""
