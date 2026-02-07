@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://b6r8iwvwwwjqo"]
+[gd_scene load_steps=68 format=4 uid="uid://b6r8iwvwwwjqo"]
 
 [ext_resource type="PackedScene" uid="uid://btcov1o8dycyk" path="res://scenes/player.tscn" id="1_0ojeu"]
 [ext_resource type="Script" uid="uid://cwu7m3ot7nrst" path="res://scripts/test_scene_eloy.gd" id="1_2pyty"]
@@ -324,6 +324,9 @@ border_width_bottom = 20
 border_color = Color(1, 0, 0, 1)
 border_blend = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c47x1"]
+bg_color = Color(1, 0.84313726, 0, 0.101960786)
+
 [sub_resource type="Gradient" id="Gradient_lcpai"]
 offsets = PackedFloat32Array(0, 0.043624163)
 colors = PackedColorArray(1, 0.84313726, 0, 1, 1, 1, 1, 0)
@@ -340,7 +343,7 @@ tile_map_data = PackedByteArray("AAACAP7/AAAEAAQAAAADAP7/AAAEAAQAAAAEAP7/AAAEAAQ
 tile_set = SubResource("TileSet_ilgam")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(1248, -800)
+position = Vector2(3096, -1320)
 
 [node name="InvisiblePlayer" type="CharacterBody2D" parent="."]
 position = Vector2(1304, 1256)
@@ -431,6 +434,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lcpai")
+
+[node name="Panel" type="Panel" parent="UltraInstinctLayer/UltraInstinctTint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c47x1")
 
 [node name="PlaybackPanel" type="Panel" parent="UltraInstinctLayer"]
 clip_contents = true
@@ -538,7 +550,7 @@ scale = Vector2(1.24, 0.60228574)
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -4096
-position = Vector2(5849, -765)
+position = Vector2(5896, -720)
 texture = ExtResource("29_ilgam")
 
 [connection signal="died" from="Player" to="Path2D/PathFollow2D" method="_on_player_died"]
