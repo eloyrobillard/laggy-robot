@@ -21,6 +21,7 @@ func _process(_delta: float) -> void:
 func _on_press_body_body_entered(body: Node) -> void:
 	if body is CharacterBody2D:
 		hit_player.emit()
+		animation_player.pause()
 
 
 func _on_player_entered_ultra_instinct_mode(_slow_down_factor: float) -> void:
