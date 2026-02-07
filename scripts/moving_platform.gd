@@ -1,4 +1,4 @@
-extends AnimatableBody2D
+extends StaticBody2D
 
 ## y_top_limit sets how far the platform will travel upward
 ## The farther in the negative direction, the farther up
@@ -40,6 +40,12 @@ var local_x_left_limit: float
 var local_y_top_limit: float
 var local_y_bottom_limit: float
 
+var position_when_entered_ultra_instinct: Vector2
+var x_timer_when_entered_ultra_instinct: float
+var y_timer_when_entered_ultra_instinct: float
+var direction_x_when_entered_ultra_instinct: DirectionX
+var direction_y_when_entered_ultra_instinct: DirectionY
+
 
 func _ready() -> void:
 	direction_x = start_direction_x
@@ -59,6 +65,7 @@ func _physics_process(delta: float) -> void:
 var x_timer = 0
 
 
+## Change the direction of horizontal movement when either extremity is reached.
 func process_x_movement(delta: float) -> float:
 	if direction_x == DirectionX.NONE:
 		return 0
@@ -87,6 +94,7 @@ func process_x_movement(delta: float) -> float:
 var y_timer = 0
 
 
+## Change the direction of vertical movement when either extremity is reached.
 func process_y_movement(delta: float) -> float:
 	if direction_y == DirectionY.NONE:
 		return 0
@@ -121,3 +129,20 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.push_back("Left limit must be smaller than right limit (X grows in the right direction; they can be equal to signify lack of movement on the X axis)")
 
 	return warnings
+
+
+func _on_player_entered_ultra_instinct_mode(slow_down_factor: float) -> void:
+	position_when_entered_ultra_instinct.x = global_position.x
+	position_when_entered_ultra_instinct.y = global_position.y
+	x_timer_when_entered_ultra_instinct = x_timer
+	y_timer_when_entered_ultra_instinct = y_timer
+	direction_x_when_entered_ultra_instinct = direction_x
+	direction_y_when_entered_ultra_instinct = direction_y
+
+
+func _on_player_left_ultra_instinct_mode() -> void:
+	global_position = position_when_entered_ultra_instinct
+	x_timer = x_timer_when_entered_ultra_instinct
+	y_timer = y_timer_when_entered_ultra_instinct
+	direction_x = direction_x_when_entered_ultra_instinct
+	direction_y = direction_y_when_entered_ultra_instinct

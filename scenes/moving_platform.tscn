@@ -16,7 +16,7 @@ tile_offset_axis = 1
 tile_size = Vector2i(256, 256)
 sources/0 = SubResource("TileSetAtlasSource_mb26n")
 
-[node name="MovingPlatform" type="AnimatableBody2D"]
+[node name="MovingPlatform" type="StaticBody2D"]
 script = ExtResource("1_ms375")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
