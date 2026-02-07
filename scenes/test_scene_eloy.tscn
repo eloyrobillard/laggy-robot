@@ -343,7 +343,7 @@ tile_map_data = PackedByteArray("AAACAP7/AAAEAAQAAAADAP7/AAAEAAQAAAAEAP7/AAAEAAQ
 tile_set = SubResource("TileSet_ilgam")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(3096, -1320)
+position = Vector2(1360, -760)
 
 [node name="InvisiblePlayer" type="CharacterBody2D" parent="."]
 position = Vector2(1304, 1256)
@@ -427,7 +427,6 @@ grow_vertical = 2
 color = Color(1, 0, 0, 1)
 
 [node name="UltraInstinctTint" type="Panel" parent="UltraInstinctLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -443,6 +442,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c47x1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UltraInstinctLayer/UltraInstinctTint"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -376.0
+offset_top = 196.0
+offset_right = -16.0
+offset_bottom = 292.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "Press [color=green]Enter[/color] 
+to leave ultra instinct"
+horizontal_alignment = 2
 
 [node name="PlaybackPanel" type="Panel" parent="UltraInstinctLayer"]
 clip_contents = true
@@ -516,9 +534,6 @@ start_direction_y = 1
 [node name="Press" parent="." instance=ExtResource("14_iv2r6")]
 position = Vector2(10572, -1697)
 scale = Vector2(1.3068864, 1.3068864)
-time_to_bottom = 0.5
-pause_bottom = 0.2
-transition_down = 2
 
 [node name="RotarySaw" parent="." instance=ExtResource("15_hcrix")]
 z_index = -1
