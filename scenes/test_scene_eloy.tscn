@@ -345,7 +345,7 @@ tile_map_data = PackedByteArray("AAACAP7/AAAEAAQAAAADAP7/AAAEAAQAAAAEAP7/AAAEAAQ
 tile_set = SubResource("TileSet_ilgam")
 
 [node name="Player" parent="." instance=ExtResource("1_0ojeu")]
-position = Vector2(1272, -760)
+position = Vector2(1416, -760)
 
 [node name="InvisiblePlayer" type="CharacterBody2D" parent="."]
 position = Vector2(1304, 1256)
